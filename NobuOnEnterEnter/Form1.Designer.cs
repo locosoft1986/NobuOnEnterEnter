@@ -80,10 +80,10 @@
             // 
             // delayInMS
             // 
-            delayInMS.Increment = new decimal(new int[] { 100, 0, 0, 0 });
+            delayInMS.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             resources.ApplyResources(delayInMS, "delayInMS");
             delayInMS.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
-            delayInMS.Minimum = new decimal(new int[] { 300, 0, 0, 0 });
+            delayInMS.Minimum = new decimal(new int[] { 50, 0, 0, 0 });
             delayInMS.Name = "delayInMS";
             delayInMS.Value = new decimal(new int[] { 300, 0, 0, 0 });
             // 

@@ -62,10 +62,10 @@ namespace NobuOnEnterEnter
             startStopOneWindow.Enabled = false;
             startStopOneWindow.Text = resources.GetString("startStopOneWindow.Text");
 
-            delayInMS.Minimum = 300;  // Minimum 300ms
+            delayInMS.Minimum = 50;  // Minimum 300ms
             delayInMS.Maximum = 5000; // Maximum 5 seconds
             delayInMS.Value = 500;    // Default 500ms
-            delayInMS.Increment = 100;
+            delayInMS.Increment = 10;
 
             // Subscribe to ListBox selection changed event
             windowList.SelectedIndexChanged += ListBoxWindows_SelectedIndexChanged;
@@ -498,7 +498,7 @@ namespace NobuOnEnterEnter
             {
                 IsRunning = false;
                 CancellationTokenSource = null;
-                Interval = 300;
+                Interval = 50;
             }
             public override string ToString()
             {
