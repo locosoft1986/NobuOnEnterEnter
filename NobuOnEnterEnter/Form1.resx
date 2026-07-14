@@ -368,6 +368,51 @@
   <data name="&gt;&gt;labelMode.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="&gt;&gt;LabelDelay.Name" xml:space="preserve">
+    <value>LabelDelay</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.Parent" xml:space="preserve">
+    <value>panelModeEnter</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.Name" xml:space="preserve">
+    <value>delayInMS</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.Parent" xml:space="preserve">
+    <value>panelModeEnter</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="panelModeEnter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="panelModeEnter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 137</value>
+  </data>
+  <data name="panelModeEnter.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;panelModeEnter.Name" xml:space="preserve">
+    <value>panelModeEnter</value>
+  </data>
+  <data name="&gt;&gt;panelModeEnter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelModeEnter.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;panelModeEnter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="LabelDelay.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -420,27 +465,6 @@
   <data name="&gt;&gt;delayInMS.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="panelModeEnter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="panelModeEnter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>416, 137</value>
-  </data>
-  <data name="panelModeEnter.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;panelModeEnter.Name" xml:space="preserve">
-    <value>panelModeEnter</value>
-  </data>
-  <data name="&gt;&gt;panelModeEnter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelModeEnter.Parent" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;panelModeEnter.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="startStopOneWindow.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -471,37 +495,37 @@
   <data name="&gt;&gt;startStopOneWindow.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+  <data name="labelPalaceHint.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 14pt</value>
+  <data name="labelPalaceHint.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 12pt</value>
   </data>
-  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="labelPalaceHint.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="labelPalaceHint.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 80</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 36</value>
+  <data name="labelPalaceHint.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 31</value>
   </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+  <data name="labelPalaceHint.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
+  <data name="labelPalaceHint.Text" xml:space="preserve">
     <value>請確保選擇對象調整為NPC</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
+  <data name="&gt;&gt;labelPalaceHint.Name" xml:space="preserve">
+    <value>labelPalaceHint</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+  <data name="&gt;&gt;labelPalaceHint.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+  <data name="&gt;&gt;labelPalaceHint.Parent" xml:space="preserve">
     <value>panelModePalace</value>
   </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;labelPalaceHint.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="numPalaceBattleWaitTime.Location" type="System.Drawing.Point, System.Drawing">
@@ -577,13 +601,13 @@
     <value>True</value>
   </data>
   <data name="labelHintFountain.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 14pt</value>
+    <value>Microsoft YaHei UI, 12pt</value>
   </data>
   <data name="labelHintFountain.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 212</value>
   </data>
   <data name="labelHintFountain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 36</value>
+    <value>305, 31</value>
   </data>
   <data name="labelHintFountain.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>

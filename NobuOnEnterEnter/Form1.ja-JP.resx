@@ -117,33 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addWindow.Text" xml:space="preserve">
+    <value>ウィンドウの追加</value>
+  </data>
   <data name="removeWindow.Text" xml:space="preserve">
     <value>ウィンドウを削除する</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>信長ONエンタースピリット 3.0</value>
+  <data name="stopAllWindow.Text" xml:space="preserve">
+    <value>すべてのウィンドウを停止する</value>
+  </data>
+  <data name="labelMode.Text" xml:space="preserve">
+    <value>モード</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="LabelDelay.Size" type="System.Drawing.Size, System.Drawing">
     <value>298, 24</value>
   </data>
-  <data name="startAllWindow.Text" xml:space="preserve">
-    <value>すべてのウィンドウを起動する</value>
-  </data>
   <data name="LabelDelay.Text" xml:space="preserve">
     <value>キーを押す間の遅延時間（ミリ秒）</value>
-  </data>
-  <data name="stopAllWindow.Text" xml:space="preserve">
-    <value>すべてのウィンドウを停止する</value>
   </data>
   <data name="startStopOneWindow.Text" xml:space="preserve">
     <value>選択したウィンドウを起動します</value>
   </data>
-  <data name="addWindow.Text" xml:space="preserve">
-    <value>ウィンドウの追加</value>
+  <data name="labelPalaceBattleWaitTime.Text" xml:space="preserve">
+    <value>戦闘待機時間（秒）</value>
   </data>
-  <data name="waitWindowSelection.Text" xml:space="preserve">
-    <value>ウィンドウを選択してください ：</value>
+  <data name="labelStartFloor.Text" xml:space="preserve">
+    <value>今回の戦闘の開始階層</value>
+  </data>
+  <data name="labelFountainFinalBossWaitTime.Text" xml:space="preserve">
+    <value>最終ボス戦闘待機時間（秒）</value>
+  </data>
+  <data name="labelFountainWaitTime.Text" xml:space="preserve">
+    <value>戦闘待機時間（秒）</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>信長ONエンタースピリット 3.0</value>
+  </data>
+  <data name="startAllWindow.Text" xml:space="preserve">
+    <value>すべてのウィンドウを起動する</value>
   </data>
   <data name="Modal.DuplicateWindow.Content" xml:space="preserve">
     <value>重複するウィンドウは追加しないでください。
@@ -187,19 +199,13 @@
   <data name="Mode.Fountain" xml:space="preserve">
     <value>夢幻冥泉</value>
   </data>
-  <data name="labelMode.Text" xml:space="preserve">
-    <value>モード</value>
+  <data name="waitWindowSelection.Text" xml:space="preserve">
+    <value>ウィンドウを選択してください ：</value>
   </data>
-  <data name="labelPalaceBattleWaitTime.Text" xml:space="preserve">
-    <value>戦闘待機時間（秒）</value>
+  <data name="labelHintFountain.Text" xml:space="preserve">
+    <value>対象をNPCに調整してください</value>
   </data>
-  <data name="labelStartFloor.Text" xml:space="preserve">
-    <value>今回の戦闘の開始階層</value>
-  </data>
-  <data name="labelFountainWaitTime.Text" xml:space="preserve">
-    <value>戦闘待機時間（秒）</value>
-  </data>
-  <data name="labelFountainFinalBossWaitTime.Text" xml:space="preserve">
-    <value>最終ボス戦闘待機時間（秒）</value>
+  <data name="labelPalaceHint.Text" xml:space="preserve">
+    <value>対象をNPCに調整してください</value>
   </data>
 </root>

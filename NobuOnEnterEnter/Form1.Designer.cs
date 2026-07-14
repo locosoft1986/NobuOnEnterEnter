@@ -44,9 +44,11 @@ namespace NobuOnEnterEnter
             delayInMS = new NumericUpDown();
             startStopOneWindow = new Button();
             panelModePalace = new Panel();
+            labelPalaceHint = new Label();
             numPalaceBattleWaitTime = new NumericUpDown();
             labelPalaceBattleWaitTime = new Label();
             panelModeFountain = new Panel();
+            labelHintFountain = new Label();
             numFountainStartFloor = new NumericUpDown();
             labelStartFloor = new Label();
             numFountainFinalBossWaitTime = new NumericUpDown();
@@ -54,8 +56,6 @@ namespace NobuOnEnterEnter
             numFountainWaitTime = new NumericUpDown();
             labelFountainWaitTime = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            labelHintFountain = new Label();
-            label4 = new Label();
             panelModeEnter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)delayInMS).BeginInit();
             panelModePalace.SuspendLayout();
@@ -158,11 +158,17 @@ namespace NobuOnEnterEnter
             // 
             // panelModePalace
             // 
-            panelModePalace.Controls.Add(label4);
+            panelModePalace.Controls.Add(labelPalaceHint);
             panelModePalace.Controls.Add(numPalaceBattleWaitTime);
             panelModePalace.Controls.Add(labelPalaceBattleWaitTime);
             resources.ApplyResources(panelModePalace, "panelModePalace");
             panelModePalace.Name = "panelModePalace";
+            // 
+            // labelPalaceHint
+            // 
+            resources.ApplyResources(labelPalaceHint, "labelPalaceHint");
+            labelPalaceHint.ForeColor = Color.Red;
+            labelPalaceHint.Name = "labelPalaceHint";
             // 
             // numPalaceBattleWaitTime
             // 
@@ -170,7 +176,7 @@ namespace NobuOnEnterEnter
             numPalaceBattleWaitTime.Maximum = new decimal(new int[] { 3600, 0, 0, 0 });
             numPalaceBattleWaitTime.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             numPalaceBattleWaitTime.Name = "numPalaceBattleWaitTime";
-            numPalaceBattleWaitTime.Value = new decimal(new int[] { 30, 0, 0, 0 });
+            numPalaceBattleWaitTime.Value = new decimal(new int[] { 50, 0, 0, 0 });
             // 
             // labelPalaceBattleWaitTime
             // 
@@ -188,6 +194,12 @@ namespace NobuOnEnterEnter
             panelModeFountain.Controls.Add(labelFountainWaitTime);
             resources.ApplyResources(panelModeFountain, "panelModeFountain");
             panelModeFountain.Name = "panelModeFountain";
+            // 
+            // labelHintFountain
+            // 
+            resources.ApplyResources(labelHintFountain, "labelHintFountain");
+            labelHintFountain.ForeColor = Color.Red;
+            labelHintFountain.Name = "labelHintFountain";
             // 
             // numFountainStartFloor
             // 
@@ -208,7 +220,7 @@ namespace NobuOnEnterEnter
             numFountainFinalBossWaitTime.Maximum = new decimal(new int[] { 3600, 0, 0, 0 });
             numFountainFinalBossWaitTime.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             numFountainFinalBossWaitTime.Name = "numFountainFinalBossWaitTime";
-            numFountainFinalBossWaitTime.Value = new decimal(new int[] { 30, 0, 0, 0 });
+            numFountainFinalBossWaitTime.Value = new decimal(new int[] { 90, 0, 0, 0 });
             // 
             // labelFountainFinalBossWaitTime
             // 
@@ -221,7 +233,7 @@ namespace NobuOnEnterEnter
             numFountainWaitTime.Maximum = new decimal(new int[] { 3600, 0, 0, 0 });
             numFountainWaitTime.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             numFountainWaitTime.Name = "numFountainWaitTime";
-            numFountainWaitTime.Value = new decimal(new int[] { 30, 0, 0, 0 });
+            numFountainWaitTime.Value = new decimal(new int[] { 60, 0, 0, 0 });
             // 
             // labelFountainWaitTime
             // 
@@ -235,18 +247,6 @@ namespace NobuOnEnterEnter
             flowLayoutPanel1.Controls.Add(panelModeFountain);
             resources.ApplyResources(flowLayoutPanel1, "flowLayoutPanel1");
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            // 
-            // labelHintFountain
-            // 
-            resources.ApplyResources(labelHintFountain, "labelHintFountain");
-            labelHintFountain.ForeColor = Color.Red;
-            labelHintFountain.Name = "labelHintFountain";
-            // 
-            // label4
-            // 
-            resources.ApplyResources(label4, "label4");
-            label4.ForeColor = Color.Red;
-            label4.Name = "label4";
             // 
             // NobuEnterEnter
             // 
@@ -310,7 +310,7 @@ namespace NobuOnEnterEnter
         private NumericUpDown numFountainStartFloor;
         private Label labelStartFloor;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Label label4;
+        private Label labelPalaceHint;
         private Label labelHintFountain;
     }
 }
