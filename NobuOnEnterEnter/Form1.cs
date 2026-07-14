@@ -33,8 +33,6 @@ namespace NobuOnEnterEnter
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool IsWindow(IntPtr hWnd);
 
-        [DllImport("user32.dll")]
-        private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool PostMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
@@ -56,8 +54,6 @@ namespace NobuOnEnterEnter
             public int Right;
             public int Bottom;
         }
-        [DllImport("user32.dll")]
-        static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
 
         
 
@@ -149,29 +145,6 @@ namespace NobuOnEnterEnter
             numFountainStartFloor.ValueChanged += Setting_ValueChanged;
         }
 
-        public static void SendLeftArrow(IntPtr hWnd, int durationMs)
-        {
-            // Set focus to window
-            SetForegroundWindow(hWnd);
-            Thread.Sleep(50); // Give time for focus change
-
-            INPUT[] inputs = new INPUT[1];
-            inputs[0].type = INPUT_KEYBOARD;
-            inputs[0].u.ki.wVk = 0x25; // VK_LEFT
-            inputs[0].u.ki.wScan = 0x4B; // Scan code
-            inputs[0].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
-            inputs[0].u.ki.time = 0;
-            inputs[0].u.ki.dwExtraInfo = IntPtr.Zero;
-
-            // Key DOWN
-            SendInput(1, inputs, Marshal.SizeOf(typeof(INPUT)));
-
-            Thread.Sleep(durationMs);
-
-            // Key UP
-            inputs[0].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
-            SendInput(1, inputs, Marshal.SizeOf(typeof(INPUT)));
-        }
         private void Setting_ValueChanged(object sender, EventArgs e)
         {
             if (isUpdatingUI || windowList.SelectedIndex == -1) return;
@@ -496,20 +469,22 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1600, 200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, battleWaitTimeMs, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1000));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_UP, 1000, 200));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 50));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 50));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 2000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_UP, 500, 200));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 400));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 2000));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1000));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 100));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_PALACE, 1000, 200));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 500, 100));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_PALACE, 500, 200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 5000, 200));
                 }
                 else if (selectedMode.ModeCode == "Fountain")
@@ -750,8 +725,14 @@ namespace NobuOnEnterEnter
                     float desiredX = width * 0.453125f;
                     float desiredY = height * 0.376875f;
                     SendMouseMove(hWnd, (int)(desiredX), (int)desiredY);
-                    Thread.Sleep(duration);
+                    Thread.Sleep(100);
                     SendMouseMove(hWnd, (int)(desiredX+3), (int)desiredY+3);
+                    Thread.Sleep(100);
+                    SendMouseMove(hWnd, (int)(desiredX - 3), (int)desiredY + 3);
+                    Thread.Sleep(100);
+                    SendMouseMove(hWnd, (int)(desiredX - 3), (int)desiredY-3);
+                    Thread.Sleep(100);
+                    SendMouseMove(hWnd, (int)(desiredX + 3), (int)desiredY - 3);
                     Thread.Sleep(duration);
                 } else
                 {

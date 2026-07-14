@@ -54,6 +54,8 @@ namespace NobuOnEnterEnter
             numFountainWaitTime = new NumericUpDown();
             labelFountainWaitTime = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            labelHintFountain = new Label();
+            label4 = new Label();
             panelModeEnter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)delayInMS).BeginInit();
             panelModePalace.SuspendLayout();
@@ -156,6 +158,7 @@ namespace NobuOnEnterEnter
             // 
             // panelModePalace
             // 
+            panelModePalace.Controls.Add(label4);
             panelModePalace.Controls.Add(numPalaceBattleWaitTime);
             panelModePalace.Controls.Add(labelPalaceBattleWaitTime);
             resources.ApplyResources(panelModePalace, "panelModePalace");
@@ -176,6 +179,7 @@ namespace NobuOnEnterEnter
             // 
             // panelModeFountain
             // 
+            panelModeFountain.Controls.Add(labelHintFountain);
             panelModeFountain.Controls.Add(numFountainStartFloor);
             panelModeFountain.Controls.Add(labelStartFloor);
             panelModeFountain.Controls.Add(numFountainFinalBossWaitTime);
@@ -231,6 +235,18 @@ namespace NobuOnEnterEnter
             flowLayoutPanel1.Controls.Add(panelModeFountain);
             resources.ApplyResources(flowLayoutPanel1, "flowLayoutPanel1");
             flowLayoutPanel1.Name = "flowLayoutPanel1";
+            // 
+            // labelHintFountain
+            // 
+            resources.ApplyResources(labelHintFountain, "labelHintFountain");
+            labelHintFountain.ForeColor = Color.Red;
+            labelHintFountain.Name = "labelHintFountain";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(label4, "label4");
+            label4.ForeColor = Color.Red;
+            label4.Name = "label4";
             // 
             // NobuEnterEnter
             // 
@@ -294,5 +310,7 @@ namespace NobuOnEnterEnter
         private NumericUpDown numFountainStartFloor;
         private Label labelStartFloor;
         private FlowLayoutPanel flowLayoutPanel1;
+        private Label label4;
+        private Label labelHintFountain;
     }
 }
