@@ -44,8 +44,22 @@ namespace NobuOnEnterEnter
         
         [DllImport("user32.dll")]
         private static extern uint MapVirtualKey(uint uCode, uint uMapType);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
         [DllImport("user32.dll")]
         static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
+
+        
 
         [StructLayout(LayoutKind.Sequential)]
         struct INPUT
@@ -91,6 +105,21 @@ namespace NobuOnEnterEnter
         private const int VK_PALACE = 9999;
         private ComponentResourceManager resources;
         private bool isInitializing = true;
+
+        const uint WM_MOUSEMOVE = 0x0200;
+
+        // Helper to create lParam from X, Y coordinates
+        static int MakeLParam(int x, int y)
+        {
+            return ((y << 16) | (x & 0xFFFF));
+        }
+
+        public static void SendMouseMove(IntPtr hWnd, int x, int y)
+        {
+            int lParam = MakeLParam(x, y);
+            PostMessage(hWnd, WM_MOUSEMOVE, 0, lParam);
+        }
+
         public NobuEnterEnter()
         {
             InitializeComponent();
@@ -199,11 +228,14 @@ namespace NobuOnEnterEnter
 
                         if (!exists)
                         {
+                            var clientSize = GetClientSize(windowHandle);
                             // Add to list
                             WindowInfo windowInfo = new WindowInfo
                             {
                                 Handle = windowHandle,
-                                Title = windowTitle
+                                Title = windowTitle,
+                                Width = clientSize.Width,
+                                Height = clientSize.Height,
                             };
 
                             capturedWindows.Add(windowInfo);
@@ -412,6 +444,21 @@ namespace NobuOnEnterEnter
             return builder.ToString();
         }
 
+        private (int Width, int Height) GetClientSize(IntPtr hWnd)
+        {
+            if (hWnd == IntPtr.Zero)
+            {
+                return (0, 0);
+            }
+
+            if (!GetClientRect(hWnd, out RECT rect))
+            {
+                return (0, 0);
+            }
+
+            return (rect.Right - rect.Left, rect.Bottom - rect.Top);
+        }
+
         private async void StartSendingKeys(WindowInfo windowInfo)
         {
             if (windowInfo.IsRunning)
@@ -444,27 +491,26 @@ namespace NobuOnEnterEnter
                     int battleWaitTimeMs = windowInfo.ModeSettings.ContainsKey("numPalaceBattleWaitTime") ? 
                         (int)(windowInfo.ModeSettings["numPalaceBattleWaitTime"] * 1000) : 30000;
 
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_W, 50, 800));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_UP, 50, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1600, 200));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, battleWaitTimeMs, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1000));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_UP, 1000, 200));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 50));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 2000));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1200));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1000));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 100));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_LEFT, 1000, 200));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 50, 800));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_UP, 50, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1600, 200));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, battleWaitTimeMs, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_UP, 1000, 200));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 2000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1200));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 100));
                     windowInfo.KeySequence.Add(new KeyAction(VK_PALACE, 1000, 200));
-                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 5000, 200));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 5000, 200));
                 }
                 else if (selectedMode.ModeCode == "Fountain")
                 {
@@ -487,7 +533,7 @@ namespace NobuOnEnterEnter
                             if (token.IsCancellationRequested)
                                 break;
 
-                            SendKey(windowInfo.Handle, keyAction.KeyValue, keyAction.Duration);
+                            SendKey(windowInfo.Handle, keyAction.KeyValue, keyAction.Duration, windowInfo.Width, windowInfo.Height);
                             await Task.Delay(keyAction.DelayTime, token);
                         }
                     }
@@ -688,7 +734,7 @@ namespace NobuOnEnterEnter
                    transitionStateFlag;
         }
 
-        private void SendKey(IntPtr hWnd, int keyValue, int duration)
+        private void SendKey(IntPtr hWnd, int keyValue, int duration, int width, int height)
         {
             bool isWind = IsWindow(hWnd);
             Console.WriteLine($"Is Valid window handle: {IsWindow(hWnd)}");
@@ -701,6 +747,12 @@ namespace NobuOnEnterEnter
             {
                 if (keyValue == VK_PALACE)
                 {
+                    float desiredX = width * 0.453125f;
+                    float desiredY = height * 0.376875f;
+                    SendMouseMove(hWnd, (int)(desiredX), (int)desiredY);
+                    Thread.Sleep(duration);
+                    SendMouseMove(hWnd, (int)(desiredX+3), (int)desiredY+3);
+                    Thread.Sleep(duration);
                 } else
                 {
 
@@ -775,6 +827,8 @@ namespace NobuOnEnterEnter
         {
             public IntPtr Handle { get; set; }
             public string Title { get; set; }
+            public int Width { get; set; }
+            public int Height { get; set; }
 
             public bool IsRunning { get; set; }
             public CancellationTokenSource CancellationTokenSource { get; set; }
