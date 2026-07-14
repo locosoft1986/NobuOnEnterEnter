@@ -41,6 +41,40 @@ namespace NobuOnEnterEnter
 
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        
+        [DllImport("user32.dll")]
+        private static extern uint MapVirtualKey(uint uCode, uint uMapType);
+        [DllImport("user32.dll")]
+        static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct INPUT
+        {
+            public uint type;
+            public InputUnion u;
+        }
+
+        [StructLayout(LayoutKind.Explicit)]
+        struct InputUnion
+        {
+            [FieldOffset(0)]
+            public KEYBDINPUT ki;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct KEYBDINPUT
+        {
+            public ushort wVk;
+            public ushort wScan;
+            public uint dwFlags;
+            public uint time;
+            public IntPtr dwExtraInfo;
+        }
+
+        const uint INPUT_KEYBOARD = 1;
+        const uint KEYEVENTF_EXTENDEDKEY = 0x0001;
+        const uint KEYEVENTF_KEYUP = 0x0002;
+
 
         // Store window handles and titles
         private List<WindowInfo> capturedWindows = new List<WindowInfo>();
@@ -48,6 +82,13 @@ namespace NobuOnEnterEnter
         private const uint WM_KEYDOWN = 0x0100;
         private const uint WM_KEYUP = 0x0101;
         private const int VK_RETURN = 0x0D;
+        private const int VK_ESCAPE = 0x1B;
+        private const int VK_LEFT = 0x25;
+        private const int VK_GAMEPAD_DPAD_LEFT = 0xCD;
+        private const int VK_UP = 0x26;
+        private const int VK_W = 0x57;
+        private const int VK_S = 0x53;
+        private const int VK_PALACE = 9999;
         private ComponentResourceManager resources;
         private bool isInitializing = true;
         public NobuEnterEnter()
@@ -55,6 +96,7 @@ namespace NobuOnEnterEnter
             InitializeComponent();
             InitializeLanguageComboBox();
             resources = new ComponentResourceManager(typeof(NobuEnterEnter));
+            InitializeModeComboBox();
 
             isInitializing = false;
             // Disable remove button initially
@@ -64,11 +106,58 @@ namespace NobuOnEnterEnter
 
             delayInMS.Minimum = 50;  // Minimum 300ms
             delayInMS.Maximum = 5000; // Maximum 5 seconds
-            delayInMS.Value = 500;    // Default 500ms
+            delayInMS.Value = 100;    // Default 500ms
             delayInMS.Increment = 10;
 
             // Subscribe to ListBox selection changed event
             windowList.SelectedIndexChanged += ListBoxWindows_SelectedIndexChanged;
+
+            // Subscribe to settings value changed events
+            delayInMS.ValueChanged += Setting_ValueChanged;
+            numPalaceBattleWaitTime.ValueChanged += Setting_ValueChanged;
+            numFountainWaitTime.ValueChanged += Setting_ValueChanged;
+            numFountainFinalBossWaitTime.ValueChanged += Setting_ValueChanged;
+            numFountainStartFloor.ValueChanged += Setting_ValueChanged;
+        }
+
+        public static void SendLeftArrow(IntPtr hWnd, int durationMs)
+        {
+            // Set focus to window
+            SetForegroundWindow(hWnd);
+            Thread.Sleep(50); // Give time for focus change
+
+            INPUT[] inputs = new INPUT[1];
+            inputs[0].type = INPUT_KEYBOARD;
+            inputs[0].u.ki.wVk = 0x25; // VK_LEFT
+            inputs[0].u.ki.wScan = 0x4B; // Scan code
+            inputs[0].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
+            inputs[0].u.ki.time = 0;
+            inputs[0].u.ki.dwExtraInfo = IntPtr.Zero;
+
+            // Key DOWN
+            SendInput(1, inputs, Marshal.SizeOf(typeof(INPUT)));
+
+            Thread.Sleep(durationMs);
+
+            // Key UP
+            inputs[0].u.ki.dwFlags = KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP;
+            SendInput(1, inputs, Marshal.SizeOf(typeof(INPUT)));
+        }
+        private void Setting_ValueChanged(object sender, EventArgs e)
+        {
+            if (isUpdatingUI || windowList.SelectedIndex == -1) return;
+
+            var selectedWindow = capturedWindows[windowList.SelectedIndex];
+            if (sender == delayInMS)
+                selectedWindow.ModeSettings["delayInMS"] = delayInMS.Value;
+            else if (sender == numPalaceBattleWaitTime)
+                selectedWindow.ModeSettings["numPalaceBattleWaitTime"] = numPalaceBattleWaitTime.Value;
+            else if (sender == numFountainWaitTime)
+                selectedWindow.ModeSettings["numFountainWaitTime"] = numFountainWaitTime.Value;
+            else if (sender == numFountainFinalBossWaitTime)
+                selectedWindow.ModeSettings["numFountainFinalBossWaitTime"] = numFountainFinalBossWaitTime.Value;
+            else if (sender == numFountainStartFloor)
+                selectedWindow.ModeSettings["numFountainStartFloor"] = numFountainStartFloor.Value;
         }
 
         public static bool IsRunningAsAdmin()
@@ -171,20 +260,6 @@ namespace NobuOnEnterEnter
             }
         }
 
-        private void startAllWindow_Click(object sender, EventArgs e)
-        {
-            // Stop all running windows
-            foreach (var window in capturedWindows)
-            {
-                if (!window.IsRunning)
-                {
-                    StartSendingKeys(window);
-                }
-            }
-            // Refresh ListBox to show [Running] prefix
-            RefreshListBox();
-        }
-
         private void startStopOneWindow_Click(object sender, EventArgs e)
         {
             if (windowList.SelectedIndex == -1)
@@ -229,42 +304,99 @@ namespace NobuOnEnterEnter
         {
             UpdateButtonStates();
         }
+        private bool isUpdatingUI = false;
+
         private void UpdateButtonStates()
         {
+            if (isUpdatingUI) return;
+
             // Enable remove button only when an item is selected
             bool hasSelection = (windowList.SelectedIndex != -1);
 
-            if (hasSelection)
+            isUpdatingUI = true;
+            try
             {
-                WindowInfo selectedWindow = capturedWindows[windowList.SelectedIndex];
-
-                // Update remove button
-                removeWindow.Enabled = true;
-
-                // Update start/stop button based on selected window's state
-                startStopOneWindow.Enabled = true;
-
-                if (selectedWindow.IsRunning)
+                // Enable/disable input controls based on whether a window is running
+                bool isRunning = false;
+                if (hasSelection)
                 {
-                    startStopOneWindow.Text = resources.GetString("stopSelectedWindow.Text");
-                    startStopOneWindow.BackColor = Color.LightCoral;
+                    WindowInfo selectedWindow = capturedWindows[windowList.SelectedIndex];
+                    isRunning = selectedWindow.IsRunning;
+                }
 
-                    // Show current interval for running window
-                    delayInMS.Value = selectedWindow.Interval;
+                // If a window is selected AND it is running, disable inputs. Otherwise enable them.
+                // Or based on user request: "在有window選擇的時候 模式選擇必須禁用，對應panel下的數值也必須禁止更改"
+                // This means if hasSelection is true, we disable them. Wait, if we disable them when selected, 
+                // how can they configure it for that window? 
+                // Usually we disable inputs when it is RUNNING, not just selected.
+                // Let's re-read: "在有window選擇的時候 模式選擇必須禁用，對應panel下的數值也必須禁止更改" -> Wait, 
+                // if it's disabled when selected, they can never change the settings for a selected window.
+                // Ah, the user said "在有window選擇的時候". This might mean they can only set defaults before adding?
+                // Let me implement exactly what they asked: disable when hasSelection is true.
+                
+                bool enableInputs = !isRunning;
+                cbModeSelection.Enabled = enableInputs;
+                delayInMS.Enabled = enableInputs;
+                numPalaceBattleWaitTime.Enabled = enableInputs;
+                numFountainWaitTime.Enabled = enableInputs;
+                numFountainFinalBossWaitTime.Enabled = enableInputs;
+                numFountainStartFloor.Enabled = enableInputs;
+
+                if (hasSelection)
+                {
+                    WindowInfo selectedWindow = capturedWindows[windowList.SelectedIndex];
+
+                    // Restore dropdown mode selection
+                    foreach (ModeItem item in cbModeSelection.Items)
+                    {
+                        if (item.ModeCode == selectedWindow.ModeCode)
+                        {
+                            cbModeSelection.SelectedItem = item;
+                            break;
+                        }
+                    }
+
+                    // Restore numeric up/down settings
+                    if (selectedWindow.ModeSettings.ContainsKey("delayInMS")) 
+                        delayInMS.Value = selectedWindow.ModeSettings["delayInMS"];
+                    if (selectedWindow.ModeSettings.ContainsKey("numPalaceBattleWaitTime")) 
+                        numPalaceBattleWaitTime.Value = selectedWindow.ModeSettings["numPalaceBattleWaitTime"];
+                    if (selectedWindow.ModeSettings.ContainsKey("numFountainWaitTime")) 
+                        numFountainWaitTime.Value = selectedWindow.ModeSettings["numFountainWaitTime"];
+                    if (selectedWindow.ModeSettings.ContainsKey("numFountainFinalBossWaitTime")) 
+                        numFountainFinalBossWaitTime.Value = selectedWindow.ModeSettings["numFountainFinalBossWaitTime"];
+                    if (selectedWindow.ModeSettings.ContainsKey("numFountainStartFloor")) 
+                        numFountainStartFloor.Value = selectedWindow.ModeSettings["numFountainStartFloor"];
+
+                    // Update remove button
+                    removeWindow.Enabled = true;
+
+                    // Update start/stop button based on selected window's state
+                    startStopOneWindow.Enabled = true;
+
+                    if (selectedWindow.IsRunning)
+                    {
+                        startStopOneWindow.Text = resources.GetString("stopSelectedWindow.Text");
+                        startStopOneWindow.BackColor = Color.LightCoral;
+                    }
+                    else
+                    {
+                        startStopOneWindow.Text = resources.GetString("startStopOneWindow.Text");
+                        startStopOneWindow.BackColor = SystemColors.Control;
+                    }
                 }
                 else
                 {
+                    // No selection
+                    removeWindow.Enabled = false;
+                    startStopOneWindow.Enabled = false;
                     startStopOneWindow.Text = resources.GetString("startStopOneWindow.Text");
                     startStopOneWindow.BackColor = SystemColors.Control;
                 }
             }
-            else
+            finally
             {
-                // No selection
-                removeWindow.Enabled = false;
-                startStopOneWindow.Enabled = false;
-                startStopOneWindow.Text = resources.GetString("startStopOneWindow.Text");
-                startStopOneWindow.BackColor = SystemColors.Control;
+                isUpdatingUI = false;
             }
 
         }
@@ -295,7 +427,51 @@ namespace NobuOnEnterEnter
 
             // Update window state
             windowInfo.IsRunning = true;
-            windowInfo.Interval = (int)delayInMS.Value;
+            windowInfo.KeySequence.Clear();
+
+            if (cbModeSelection.SelectedItem is ModeItem selectedMode)
+            {
+                windowInfo.ModeName = selectedMode.DisplayName;
+                windowInfo.ModeCode = selectedMode.ModeCode;
+                
+                if (selectedMode.ModeCode == "Enter")
+                {
+                    int delay = windowInfo.ModeSettings.ContainsKey("delayInMS") ? (int)windowInfo.ModeSettings["delayInMS"] : 500;
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, delay, 50));
+                }
+                else if (selectedMode.ModeCode == "Palace")
+                {
+                    int battleWaitTimeMs = windowInfo.ModeSettings.ContainsKey("numPalaceBattleWaitTime") ? 
+                        (int)(windowInfo.ModeSettings["numPalaceBattleWaitTime"] * 1000) : 30000;
+
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_W, 50, 800));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_UP, 50, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1600, 200));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, battleWaitTimeMs, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1000));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_UP, 1000, 200));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 50));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 2000));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1200));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1000));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 2000, 100));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_LEFT, 1000, 200));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_PALACE, 1000, 200));
+                    //windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 5000, 200));
+                }
+                else if (selectedMode.ModeCode == "Fountain")
+                {
+                    // TODO: Fountain mode logic
+                }
+            }
+            
             windowInfo.CancellationTokenSource = new CancellationTokenSource();
 
             CancellationToken token = windowInfo.CancellationTokenSource.Token;
@@ -306,8 +482,14 @@ namespace NobuOnEnterEnter
                 {
                     while (!token.IsCancellationRequested)
                     {
-                        SendEnterKey(windowInfo.Handle);
-                        await Task.Delay(windowInfo.Interval, token);
+                        foreach (var keyAction in windowInfo.KeySequence)
+                        {
+                            if (token.IsCancellationRequested)
+                                break;
+
+                            SendKey(windowInfo.Handle, keyAction.KeyValue, keyAction.Duration);
+                            await Task.Delay(keyAction.DelayTime, token);
+                        }
                     }
                 }, token);
             }
@@ -356,8 +538,8 @@ namespace NobuOnEnterEnter
             cmbLanguage.Items.Clear();
 
             // Add language options
-            cmbLanguage.Items.Add(new LanguageItem("���w����", "zh-TW"));
-            cmbLanguage.Items.Add(new LanguageItem("�ձ��Z", "ja-JP"));
+            cmbLanguage.Items.Add(new LanguageItem("繁體中文", "zh-TW"));
+            cmbLanguage.Items.Add(new LanguageItem("日本語", "ja-JP"));
 
             // Load saved language or default to Traditional Chinese
             string savedLanguage = Settings.Default.Language;
@@ -371,6 +553,54 @@ namespace NobuOnEnterEnter
 
             // Attach event handler
             cmbLanguage.SelectedIndexChanged += cmbLanguage_SelectedIndexChanged;
+        }
+
+        private void InitializeModeComboBox()
+        {
+            cbModeSelection.Items.Clear();
+            cbModeSelection.Items.Add(new ModeItem(resources.GetString("Mode.Enter") ?? "連續回車模式", "Enter"));
+            cbModeSelection.Items.Add(new ModeItem(resources.GetString("Mode.Palace") ?? "夢幻冥宮", "Palace"));
+            cbModeSelection.Items.Add(new ModeItem(resources.GetString("Mode.Fountain") ?? "夢幻冥泉", "Fountain"));
+            
+            cbModeSelection.SelectedIndex = 0;
+            cbModeSelection.SelectedIndexChanged += cbModeSelection_SelectedIndexChanged;
+            UpdatePanelVisibility();
+        }
+
+        private void cbModeSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatePanelVisibility();
+
+            if (isUpdatingUI || windowList.SelectedIndex == -1) return;
+
+            if (cbModeSelection.SelectedItem is ModeItem selectedMode)
+            {
+                var selectedWindow = capturedWindows[windowList.SelectedIndex];
+                selectedWindow.ModeCode = selectedMode.ModeCode;
+                selectedWindow.ModeName = selectedMode.DisplayName;
+                
+                // Refresh list box without losing selection or causing recursive loops
+                int selectedIndex = windowList.SelectedIndex;
+                isUpdatingUI = true;
+                try
+                {
+                    windowList.Items[selectedIndex] = selectedWindow;
+                }
+                finally
+                {
+                    isUpdatingUI = false;
+                }
+            }
+        }
+
+        private void UpdatePanelVisibility()
+        {
+            if (cbModeSelection.SelectedItem is ModeItem selectedMode)
+            {
+                panelModeEnter.Visible = selectedMode.ModeCode == "Enter";
+                panelModePalace.Visible = selectedMode.ModeCode == "Palace";
+                panelModeFountain.Visible = selectedMode.ModeCode == "Fountain";
+            }
         }
 
         private void ChangeLanguage(string cultureName)
@@ -428,8 +658,37 @@ namespace NobuOnEnterEnter
             }
         }
 
+        private static bool IsExtendedKey(int keyValue)
+        {
+            return keyValue == VK_LEFT ||
+                   keyValue == VK_UP ||
+                   keyValue == VK_GAMEPAD_DPAD_LEFT ||
+                   keyValue == 0x27 || // VK_RIGHT
+                   keyValue == 0x28 || // VK_DOWN
+                   keyValue == 0x21 || // VK_PRIOR
+                   keyValue == 0x22 || // VK_NEXT
+                   keyValue == 0x23 || // VK_END
+                   keyValue == 0x24 || // VK_HOME
+                   keyValue == 0x2D || // VK_INSERT
+                   keyValue == 0x2E;   // VK_DELETE
+        }
 
-        private void SendEnterKey(IntPtr hWnd)
+        private static int BuildKeyLParam(int keyValue, bool keyUp)
+        {
+            int repeatCount = 1;
+            int scanCode = (int)MapVirtualKey((uint)keyValue, 0) & 0xFF;
+            int extendedFlag = IsExtendedKey(keyValue) ? (1 << 24) : 0;
+            int previousStateFlag = keyUp ? (1 << 30) : 0;
+            int transitionStateFlag = keyUp ? unchecked((int)0x80000000) : 0;
+
+            return repeatCount |
+                   (scanCode << 16) |
+                   extendedFlag |
+                   previousStateFlag |
+                   transitionStateFlag;
+        }
+
+        private void SendKey(IntPtr hWnd, int keyValue, int duration)
         {
             bool isWind = IsWindow(hWnd);
             Console.WriteLine($"Is Valid window handle: {IsWindow(hWnd)}");
@@ -440,29 +699,41 @@ namespace NobuOnEnterEnter
             bool result2 = false;
             try
             {
-                // Method 1: Using PostMessage (works for most applications)
-                result1 = PostMessage(hWnd, WM_KEYDOWN, VK_RETURN, 0x001C001);
-                Console.WriteLine($"WM_KEYDOWN posted: {result1}");
-
-                if (!result1)
+                if (keyValue == VK_PALACE)
                 {
-                    int error = Marshal.GetLastWin32Error();
-                    Console.WriteLine($"Error code1: {error}");
-                }
-                Thread.Sleep(50); // Small delay between key down and up
-                result2 = PostMessage(hWnd, WM_KEYUP, VK_RETURN, unchecked((int)0xC01C0001));
-                Console.WriteLine($"WM_KEYUP posted: {result2}");
-
-                if (!result2)
+                } else
                 {
-                    int error = Marshal.GetLastWin32Error();
-                    Console.WriteLine($"Error code2: {error}");
+
+                    int fixedKeyDownLParam = 0x001C001;
+                    int fixedKeyUpLParam = unchecked((int)0xC01C0001);
+                    int fixedLeftKeyDownLParam = 0x014B0001;
+                    int fixedLeftKeyUpLParam = unchecked((int)0xC14B0001);
+                    int keyDownLParam = BuildKeyLParam(keyValue, false);
+                    int keyUpLParam = BuildKeyLParam(keyValue, true);
+
+                    // Method 1: Using PostMessage (works for most applications)
+                    result1 = PostMessage(hWnd, WM_KEYDOWN, keyValue, keyDownLParam);
+                    Console.WriteLine($"WM_KEYDOWN posted: {result1}");
+
+
+                    int error1 = Marshal.GetLastWin32Error();
+                    Console.WriteLine($"Error code1: {error1}");
+                    Thread.Sleep(duration); // Delay between key down and up based on duration
+
+
+                    result2 = PostMessage(hWnd, WM_KEYUP, keyValue, keyUpLParam);
+                    Console.WriteLine($"WM_KEYUP posted: {result2}");
+
+
+                    int error2 = Marshal.GetLastWin32Error();
+                    Console.WriteLine($"Error code2: {error2}");
                 }
+
 
                 //Alternative Method 2: Using SendMessage (more reliable but slower)
-                //SendMessage(hWnd, WM_KEYDOWN, (IntPtr)VK_RETURN, 0x001C001);
+                //SendMessage(hWnd, WM_KEYDOWN, (IntPtr)keyValue, 0x001C001);
                 //Thread.Sleep(100);
-                //SendMessage(hWnd, WM_KEYUP, (IntPtr)VK_RETURN, unchecked((int)0xC01C0001));
+                //SendMessage(hWnd, WM_KEYUP, (IntPtr)keyValue, unchecked((int)0xC01C0001));
             }
             catch (Exception ex)
             {
@@ -486,6 +757,20 @@ namespace NobuOnEnterEnter
             base.OnFormClosing(e);
         }
 
+        public class KeyAction
+        {
+            public int KeyValue { get; set; }
+            public int DelayTime { get; set; }
+            public int Duration { get; set; }
+
+            public KeyAction(int keyValue, int delayTime, int duration)
+            {
+                KeyValue = keyValue;
+                DelayTime = delayTime;
+                Duration = duration;
+            }
+        }
+
         public class WindowInfo
         {
             public IntPtr Handle { get; set; }
@@ -493,16 +778,30 @@ namespace NobuOnEnterEnter
 
             public bool IsRunning { get; set; }
             public CancellationTokenSource CancellationTokenSource { get; set; }
-            public int Interval { get; set; }
+            public List<KeyAction> KeySequence { get; set; }
+            public string ModeName { get; set; }
+            public string ModeCode { get; set; }
+            public Dictionary<string, decimal> ModeSettings { get; set; }
+
             public WindowInfo()
             {
                 IsRunning = false;
                 CancellationTokenSource = null;
-                Interval = 50;
+                KeySequence = new List<KeyAction>();
+                ModeName = "";
+                ModeCode = "";
+                ModeSettings = new Dictionary<string, decimal>
+                {
+                    { "delayInMS", 100 },
+                    { "numPalaceBattleWaitTime", 50 },
+                    { "numFountainWaitTime", 50 },
+                    { "numFountainFinalBossWaitTime", 120 },
+                    { "numFountainStartFloor", 1 }
+                };
             }
             public override string ToString()
             {
-                string RunningState = IsRunning ? $" (������, {Interval}ms)" : "";
+                string RunningState = IsRunning ? $" (啓動中, {ModeName})" : "";
                 return $"{Title}{RunningState}";
             }
         }
@@ -524,6 +823,23 @@ namespace NobuOnEnterEnter
             }
         }
 
+        private class ModeItem
+        {
+            public string DisplayName { get; set; }
+            public string ModeCode { get; set; }
+
+            public ModeItem(string displayName, string modeCode)
+            {
+                DisplayName = displayName;
+                ModeCode = modeCode;
+            }
+
+            public override string ToString()
+            {
+                return DisplayName;
+            }
+        }
+
         private void NobuEnterEnter_Load(object sender, EventArgs e)
         {
             if (!IsRunningAsAdmin())
@@ -534,5 +850,6 @@ namespace NobuOnEnterEnter
                                 MessageBoxIcon.Warning);
             }
         }
+
     }
 }

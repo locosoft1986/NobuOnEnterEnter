@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -177,5 +177,29 @@
   <data name="Modal.Error.NotDetectAnyWindow.Content" xml:space="preserve">
     <value>選択されたウィンドウが検出されませんでした
 </value>
+  </data>
+  <data name="Mode.Enter" xml:space="preserve">
+    <value>連続改行モード</value>
+  </data>
+  <data name="Mode.Palace" xml:space="preserve">
+    <value>夢幻冥宮</value>
+  </data>
+  <data name="Mode.Fountain" xml:space="preserve">
+    <value>夢幻冥泉</value>
+  </data>
+  <data name="labelMode.Text" xml:space="preserve">
+    <value>モード</value>
+  </data>
+  <data name="labelPalaceBattleWaitTime.Text" xml:space="preserve">
+    <value>戦闘待機時間（秒）</value>
+  </data>
+  <data name="labelStartFloor.Text" xml:space="preserve">
+    <value>今回の戦闘の開始階層</value>
+  </data>
+  <data name="labelFountainWaitTime.Text" xml:space="preserve">
+    <value>戦闘待機時間（秒）</value>
+  </data>
+  <data name="labelFountainFinalBossWaitTime.Text" xml:space="preserve">
+    <value>最終ボス戦闘待機時間（秒）</value>
   </data>
 </root>

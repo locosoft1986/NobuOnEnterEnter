@@ -1,4 +1,4 @@
-﻿namespace NobuOnEnterEnter
+namespace NobuOnEnterEnter
 {
     partial class NobuEnterEnter
     {
@@ -32,16 +32,37 @@
             windowList = new ListBox();
             addWindow = new Button();
             removeWindow = new Button();
-            startStopOneWindow = new Button();
-            startAllWindow = new Button();
-            delayInMS = new NumericUpDown();
-            LabelDelay = new Label();
             label1 = new Label();
             label2 = new Label();
             stopAllWindow = new Button();
             label3 = new Label();
             cmbLanguage = new ComboBox();
+            cbModeSelection = new ComboBox();
+            labelMode = new Label();
+            panelModeEnter = new Panel();
+            LabelDelay = new Label();
+            delayInMS = new NumericUpDown();
+            startStopOneWindow = new Button();
+            panelModePalace = new Panel();
+            numPalaceBattleWaitTime = new NumericUpDown();
+            labelPalaceBattleWaitTime = new Label();
+            panelModeFountain = new Panel();
+            numFountainStartFloor = new NumericUpDown();
+            labelStartFloor = new Label();
+            numFountainFinalBossWaitTime = new NumericUpDown();
+            labelFountainFinalBossWaitTime = new Label();
+            numFountainWaitTime = new NumericUpDown();
+            labelFountainWaitTime = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            panelModeEnter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)delayInMS).BeginInit();
+            panelModePalace.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numPalaceBattleWaitTime).BeginInit();
+            panelModeFountain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numFountainStartFloor).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numFountainFinalBossWaitTime).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numFountainWaitTime).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // windowList
@@ -63,34 +84,6 @@
             removeWindow.Name = "removeWindow";
             removeWindow.UseVisualStyleBackColor = true;
             removeWindow.Click += removeWindow_Click;
-            // 
-            // startStopOneWindow
-            // 
-            resources.ApplyResources(startStopOneWindow, "startStopOneWindow");
-            startStopOneWindow.Name = "startStopOneWindow";
-            startStopOneWindow.UseVisualStyleBackColor = true;
-            startStopOneWindow.Click += startStopOneWindow_Click;
-            // 
-            // startAllWindow
-            // 
-            resources.ApplyResources(startAllWindow, "startAllWindow");
-            startAllWindow.Name = "startAllWindow";
-            startAllWindow.UseVisualStyleBackColor = true;
-            startAllWindow.Click += startAllWindow_Click;
-            // 
-            // delayInMS
-            // 
-            delayInMS.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            resources.ApplyResources(delayInMS, "delayInMS");
-            delayInMS.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
-            delayInMS.Minimum = new decimal(new int[] { 50, 0, 0, 0 });
-            delayInMS.Name = "delayInMS";
-            delayInMS.Value = new decimal(new int[] { 300, 0, 0, 0 });
-            // 
-            // LabelDelay
-            // 
-            resources.ApplyResources(LabelDelay, "LabelDelay");
-            LabelDelay.Name = "LabelDelay";
             // 
             // label1
             // 
@@ -116,29 +109,159 @@
             // 
             // cmbLanguage
             // 
+            cmbLanguage.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbLanguage.FormattingEnabled = true;
             resources.ApplyResources(cmbLanguage, "cmbLanguage");
             cmbLanguage.Name = "cmbLanguage";
+            // 
+            // cbModeSelection
+            // 
+            cbModeSelection.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbModeSelection.FormattingEnabled = true;
+            resources.ApplyResources(cbModeSelection, "cbModeSelection");
+            cbModeSelection.Name = "cbModeSelection";
+            // 
+            // labelMode
+            // 
+            resources.ApplyResources(labelMode, "labelMode");
+            labelMode.Name = "labelMode";
+            // 
+            // panelModeEnter
+            // 
+            panelModeEnter.Controls.Add(LabelDelay);
+            panelModeEnter.Controls.Add(delayInMS);
+            resources.ApplyResources(panelModeEnter, "panelModeEnter");
+            panelModeEnter.Name = "panelModeEnter";
+            // 
+            // LabelDelay
+            // 
+            resources.ApplyResources(LabelDelay, "LabelDelay");
+            LabelDelay.Name = "LabelDelay";
+            // 
+            // delayInMS
+            // 
+            delayInMS.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            resources.ApplyResources(delayInMS, "delayInMS");
+            delayInMS.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
+            delayInMS.Minimum = new decimal(new int[] { 50, 0, 0, 0 });
+            delayInMS.Name = "delayInMS";
+            delayInMS.Value = new decimal(new int[] { 300, 0, 0, 0 });
+            // 
+            // startStopOneWindow
+            // 
+            resources.ApplyResources(startStopOneWindow, "startStopOneWindow");
+            startStopOneWindow.Name = "startStopOneWindow";
+            startStopOneWindow.UseVisualStyleBackColor = true;
+            startStopOneWindow.Click += startStopOneWindow_Click;
+            // 
+            // panelModePalace
+            // 
+            panelModePalace.Controls.Add(numPalaceBattleWaitTime);
+            panelModePalace.Controls.Add(labelPalaceBattleWaitTime);
+            resources.ApplyResources(panelModePalace, "panelModePalace");
+            panelModePalace.Name = "panelModePalace";
+            // 
+            // numPalaceBattleWaitTime
+            // 
+            resources.ApplyResources(numPalaceBattleWaitTime, "numPalaceBattleWaitTime");
+            numPalaceBattleWaitTime.Maximum = new decimal(new int[] { 3600, 0, 0, 0 });
+            numPalaceBattleWaitTime.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
+            numPalaceBattleWaitTime.Name = "numPalaceBattleWaitTime";
+            numPalaceBattleWaitTime.Value = new decimal(new int[] { 30, 0, 0, 0 });
+            // 
+            // labelPalaceBattleWaitTime
+            // 
+            resources.ApplyResources(labelPalaceBattleWaitTime, "labelPalaceBattleWaitTime");
+            labelPalaceBattleWaitTime.Name = "labelPalaceBattleWaitTime";
+            // 
+            // panelModeFountain
+            // 
+            panelModeFountain.Controls.Add(numFountainStartFloor);
+            panelModeFountain.Controls.Add(labelStartFloor);
+            panelModeFountain.Controls.Add(numFountainFinalBossWaitTime);
+            panelModeFountain.Controls.Add(labelFountainFinalBossWaitTime);
+            panelModeFountain.Controls.Add(numFountainWaitTime);
+            panelModeFountain.Controls.Add(labelFountainWaitTime);
+            resources.ApplyResources(panelModeFountain, "panelModeFountain");
+            panelModeFountain.Name = "panelModeFountain";
+            // 
+            // numFountainStartFloor
+            // 
+            resources.ApplyResources(numFountainStartFloor, "numFountainStartFloor");
+            numFountainStartFloor.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            numFountainStartFloor.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numFountainStartFloor.Name = "numFountainStartFloor";
+            numFountainStartFloor.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // labelStartFloor
+            // 
+            resources.ApplyResources(labelStartFloor, "labelStartFloor");
+            labelStartFloor.Name = "labelStartFloor";
+            // 
+            // numFountainFinalBossWaitTime
+            // 
+            resources.ApplyResources(numFountainFinalBossWaitTime, "numFountainFinalBossWaitTime");
+            numFountainFinalBossWaitTime.Maximum = new decimal(new int[] { 3600, 0, 0, 0 });
+            numFountainFinalBossWaitTime.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
+            numFountainFinalBossWaitTime.Name = "numFountainFinalBossWaitTime";
+            numFountainFinalBossWaitTime.Value = new decimal(new int[] { 30, 0, 0, 0 });
+            // 
+            // labelFountainFinalBossWaitTime
+            // 
+            resources.ApplyResources(labelFountainFinalBossWaitTime, "labelFountainFinalBossWaitTime");
+            labelFountainFinalBossWaitTime.Name = "labelFountainFinalBossWaitTime";
+            // 
+            // numFountainWaitTime
+            // 
+            resources.ApplyResources(numFountainWaitTime, "numFountainWaitTime");
+            numFountainWaitTime.Maximum = new decimal(new int[] { 3600, 0, 0, 0 });
+            numFountainWaitTime.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
+            numFountainWaitTime.Name = "numFountainWaitTime";
+            numFountainWaitTime.Value = new decimal(new int[] { 30, 0, 0, 0 });
+            // 
+            // labelFountainWaitTime
+            // 
+            resources.ApplyResources(labelFountainWaitTime, "labelFountainWaitTime");
+            labelFountainWaitTime.Name = "labelFountainWaitTime";
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(panelModeEnter);
+            flowLayoutPanel1.Controls.Add(panelModePalace);
+            flowLayoutPanel1.Controls.Add(panelModeFountain);
+            resources.ApplyResources(flowLayoutPanel1, "flowLayoutPanel1");
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // NobuEnterEnter
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(startStopOneWindow);
+            Controls.Add(labelMode);
+            Controls.Add(cbModeSelection);
             Controls.Add(cmbLanguage);
             Controls.Add(label3);
             Controls.Add(stopAllWindow);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(LabelDelay);
-            Controls.Add(delayInMS);
-            Controls.Add(startAllWindow);
-            Controls.Add(startStopOneWindow);
             Controls.Add(removeWindow);
             Controls.Add(addWindow);
             Controls.Add(windowList);
             Name = "NobuEnterEnter";
             Load += NobuEnterEnter_Load;
+            panelModeEnter.ResumeLayout(false);
+            panelModeEnter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)delayInMS).EndInit();
+            panelModePalace.ResumeLayout(false);
+            panelModePalace.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numPalaceBattleWaitTime).EndInit();
+            panelModeFountain.ResumeLayout(false);
+            panelModeFountain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numFountainStartFloor).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numFountainFinalBossWaitTime).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numFountainWaitTime).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -148,14 +271,28 @@
         private ListBox windowList;
         private Button addWindow;
         private Button removeWindow;
-        private Button startStopOneWindow;
-        private Button startAllWindow;
-        private NumericUpDown delayInMS;
-        private Label LabelDelay;
         private Label label1;
         private Label label2;
         private Button stopAllWindow;
         private Label label3;
         private ComboBox cmbLanguage;
+        private Label labelWindowFullTitle;
+        private ComboBox cbModeSelection;
+        private Label labelMode;
+        private Panel panelModeEnter;
+        private Label LabelDelay;
+        private NumericUpDown delayInMS;
+        private Button startStopOneWindow;
+        private Panel panelModePalace;
+        private NumericUpDown numPalaceBattleWaitTime;
+        private Label labelPalaceBattleWaitTime;
+        private Panel panelModeFountain;
+        private NumericUpDown numFountainFinalBossWaitTime;
+        private Label labelFountainFinalBossWaitTime;
+        private NumericUpDown numFountainWaitTime;
+        private Label labelFountainWaitTime;
+        private NumericUpDown numFountainStartFloor;
+        private Label labelStartFloor;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

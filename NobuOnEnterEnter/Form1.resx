@@ -123,10 +123,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="windowList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>438, 12</value>
+    <value>434, 12</value>
   </data>
   <data name="windowList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>827, 628</value>
+    <value>918, 820</value>
   </data>
   <data name="windowList.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -144,10 +144,10 @@
     <value>11</value>
   </data>
   <data name="addWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 24</value>
+    <value>12, 657</value>
   </data>
   <data name="addWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>426, 34</value>
+    <value>416, 34</value>
   </data>
   <data name="addWindow.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -171,10 +171,10 @@
     <value>False</value>
   </data>
   <data name="removeWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 64</value>
+    <value>12, 697</value>
   </data>
   <data name="removeWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>422, 34</value>
+    <value>416, 34</value>
   </data>
   <data name="removeWindow.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -194,110 +194,11 @@
   <data name="&gt;&gt;removeWindow.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="startStopOneWindow.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="startStopOneWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 111</value>
-  </data>
-  <data name="startStopOneWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>422, 34</value>
-  </data>
-  <data name="startStopOneWindow.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="startStopOneWindow.Text" xml:space="preserve">
-    <value>啓動選中視窗</value>
-  </data>
-  <data name="&gt;&gt;startStopOneWindow.Name" xml:space="preserve">
-    <value>startStopOneWindow</value>
-  </data>
-  <data name="&gt;&gt;startStopOneWindow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;startStopOneWindow.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;startStopOneWindow.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="startAllWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 158</value>
-  </data>
-  <data name="startAllWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>420, 34</value>
-  </data>
-  <data name="startAllWindow.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="startAllWindow.Text" xml:space="preserve">
-    <value>啓動所有視窗</value>
-  </data>
-  <data name="&gt;&gt;startAllWindow.Name" xml:space="preserve">
-    <value>startAllWindow</value>
-  </data>
-  <data name="&gt;&gt;startAllWindow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;startAllWindow.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;startAllWindow.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="delayInMS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 270</value>
-  </data>
-  <data name="delayInMS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>415, 30</value>
-  </data>
-  <data name="delayInMS.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;delayInMS.Name" xml:space="preserve">
-    <value>delayInMS</value>
-  </data>
-  <data name="&gt;&gt;delayInMS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;delayInMS.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;delayInMS.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="LabelDelay.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="LabelDelay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 243</value>
-  </data>
-  <data name="LabelDelay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 24</value>
-  </data>
-  <data name="LabelDelay.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="LabelDelay.Text" xml:space="preserve">
-    <value>回車之間的延遲(毫秒)</value>
-  </data>
-  <data name="&gt;&gt;LabelDelay.Name" xml:space="preserve">
-    <value>LabelDelay</value>
-  </data>
-  <data name="&gt;&gt;LabelDelay.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LabelDelay.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;LabelDelay.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 584</value>
+    <value>12, 774</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 24</value>
@@ -318,13 +219,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>8</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 622</value>
+    <value>12, 809</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 24</value>
@@ -345,13 +246,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="stopAllWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 200</value>
+    <value>12, 737</value>
   </data>
   <data name="stopAllWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>417, 34</value>
+    <value>416, 34</value>
   </data>
   <data name="stopAllWindow.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -369,13 +270,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;stopAllWindow.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 328</value>
+    <value>269, 774</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 24</value>
@@ -396,13 +297,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="cmbLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 355</value>
+    <value>270, 801</value>
   </data>
   <data name="cmbLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>415, 32</value>
+    <value>158, 32</value>
   </data>
   <data name="cmbLanguage.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -417,6 +318,541 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cmbLanguage.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cbModeSelection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 51</value>
+  </data>
+  <data name="cbModeSelection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 32</value>
+  </data>
+  <data name="cbModeSelection.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;cbModeSelection.Name" xml:space="preserve">
+    <value>cbModeSelection</value>
+  </data>
+  <data name="&gt;&gt;cbModeSelection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbModeSelection.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbModeSelection.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="labelMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="labelMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 24</value>
+  </data>
+  <data name="labelMode.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="labelMode.Text" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="&gt;&gt;labelMode.Name" xml:space="preserve">
+    <value>labelMode</value>
+  </data>
+  <data name="&gt;&gt;labelMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelMode.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelMode.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.Name" xml:space="preserve">
+    <value>LabelDelay</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.Parent" xml:space="preserve">
+    <value>panelModeEnter</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.Name" xml:space="preserve">
+    <value>delayInMS</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.Parent" xml:space="preserve">
+    <value>panelModeEnter</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="panelModeEnter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="panelModeEnter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 137</value>
+  </data>
+  <data name="panelModeEnter.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;panelModeEnter.Name" xml:space="preserve">
+    <value>panelModeEnter</value>
+  </data>
+  <data name="&gt;&gt;panelModeEnter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelModeEnter.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;panelModeEnter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LabelDelay.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LabelDelay.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LabelDelay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 10</value>
+  </data>
+  <data name="LabelDelay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 24</value>
+  </data>
+  <data name="LabelDelay.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="LabelDelay.Text" xml:space="preserve">
+    <value>回車之間的延遲(毫秒)</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.Name" xml:space="preserve">
+    <value>LabelDelay</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.Parent" xml:space="preserve">
+    <value>panelModeEnter</value>
+  </data>
+  <data name="&gt;&gt;LabelDelay.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="delayInMS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 37</value>
+  </data>
+  <data name="delayInMS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>374, 30</value>
+  </data>
+  <data name="delayInMS.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.Name" xml:space="preserve">
+    <value>delayInMS</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.Parent" xml:space="preserve">
+    <value>panelModeEnter</value>
+  </data>
+  <data name="&gt;&gt;delayInMS.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="startStopOneWindow.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="startStopOneWindow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="startStopOneWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 606</value>
+  </data>
+  <data name="startStopOneWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 34</value>
+  </data>
+  <data name="startStopOneWindow.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="startStopOneWindow.Text" xml:space="preserve">
+    <value>啓動選中視窗</value>
+  </data>
+  <data name="&gt;&gt;startStopOneWindow.Name" xml:space="preserve">
+    <value>startStopOneWindow</value>
+  </data>
+  <data name="&gt;&gt;startStopOneWindow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;startStopOneWindow.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;startStopOneWindow.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;numPalaceBattleWaitTime.Name" xml:space="preserve">
+    <value>numPalaceBattleWaitTime</value>
+  </data>
+  <data name="&gt;&gt;numPalaceBattleWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numPalaceBattleWaitTime.Parent" xml:space="preserve">
+    <value>panelModePalace</value>
+  </data>
+  <data name="&gt;&gt;numPalaceBattleWaitTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labelPalaceBattleWaitTime.Name" xml:space="preserve">
+    <value>labelPalaceBattleWaitTime</value>
+  </data>
+  <data name="&gt;&gt;labelPalaceBattleWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelPalaceBattleWaitTime.Parent" xml:space="preserve">
+    <value>panelModePalace</value>
+  </data>
+  <data name="&gt;&gt;labelPalaceBattleWaitTime.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="panelModePalace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 146</value>
+  </data>
+  <data name="panelModePalace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 118</value>
+  </data>
+  <data name="panelModePalace.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;panelModePalace.Name" xml:space="preserve">
+    <value>panelModePalace</value>
+  </data>
+  <data name="&gt;&gt;panelModePalace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelModePalace.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;panelModePalace.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="numPalaceBattleWaitTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 47</value>
+  </data>
+  <data name="numPalaceBattleWaitTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 30</value>
+  </data>
+  <data name="numPalaceBattleWaitTime.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;numPalaceBattleWaitTime.Name" xml:space="preserve">
+    <value>numPalaceBattleWaitTime</value>
+  </data>
+  <data name="&gt;&gt;numPalaceBattleWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numPalaceBattleWaitTime.Parent" xml:space="preserve">
+    <value>panelModePalace</value>
+  </data>
+  <data name="&gt;&gt;numPalaceBattleWaitTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labelPalaceBattleWaitTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelPalaceBattleWaitTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 19</value>
+  </data>
+  <data name="labelPalaceBattleWaitTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 24</value>
+  </data>
+  <data name="labelPalaceBattleWaitTime.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelPalaceBattleWaitTime.Text" xml:space="preserve">
+    <value>一次戰鬥預估時間(秒)</value>
+  </data>
+  <data name="&gt;&gt;labelPalaceBattleWaitTime.Name" xml:space="preserve">
+    <value>labelPalaceBattleWaitTime</value>
+  </data>
+  <data name="&gt;&gt;labelPalaceBattleWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelPalaceBattleWaitTime.Parent" xml:space="preserve">
+    <value>panelModePalace</value>
+  </data>
+  <data name="&gt;&gt;labelPalaceBattleWaitTime.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;numFountainStartFloor.Name" xml:space="preserve">
+    <value>numFountainStartFloor</value>
+  </data>
+  <data name="&gt;&gt;numFountainStartFloor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numFountainStartFloor.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;numFountainStartFloor.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labelStartFloor.Name" xml:space="preserve">
+    <value>labelStartFloor</value>
+  </data>
+  <data name="&gt;&gt;labelStartFloor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelStartFloor.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;labelStartFloor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;numFountainFinalBossWaitTime.Name" xml:space="preserve">
+    <value>numFountainFinalBossWaitTime</value>
+  </data>
+  <data name="&gt;&gt;numFountainFinalBossWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numFountainFinalBossWaitTime.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;numFountainFinalBossWaitTime.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;labelFountainFinalBossWaitTime.Name" xml:space="preserve">
+    <value>labelFountainFinalBossWaitTime</value>
+  </data>
+  <data name="&gt;&gt;labelFountainFinalBossWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelFountainFinalBossWaitTime.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;labelFountainFinalBossWaitTime.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;numFountainWaitTime.Name" xml:space="preserve">
+    <value>numFountainWaitTime</value>
+  </data>
+  <data name="&gt;&gt;numFountainWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numFountainWaitTime.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;numFountainWaitTime.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;labelFountainWaitTime.Name" xml:space="preserve">
+    <value>labelFountainWaitTime</value>
+  </data>
+  <data name="&gt;&gt;labelFountainWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelFountainWaitTime.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;labelFountainWaitTime.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="panelModeFountain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 270</value>
+  </data>
+  <data name="panelModeFountain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>416, 218</value>
+  </data>
+  <data name="panelModeFountain.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;panelModeFountain.Name" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;panelModeFountain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelModeFountain.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;panelModeFountain.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="numFountainStartFloor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 40</value>
+  </data>
+  <data name="numFountainStartFloor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 30</value>
+  </data>
+  <data name="numFountainStartFloor.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;numFountainStartFloor.Name" xml:space="preserve">
+    <value>numFountainStartFloor</value>
+  </data>
+  <data name="&gt;&gt;numFountainStartFloor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numFountainStartFloor.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;numFountainStartFloor.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labelStartFloor.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelStartFloor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelStartFloor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="labelStartFloor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 24</value>
+  </data>
+  <data name="labelStartFloor.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labelStartFloor.Text" xml:space="preserve">
+    <value>這次戰鬥的起始層數</value>
+  </data>
+  <data name="&gt;&gt;labelStartFloor.Name" xml:space="preserve">
+    <value>labelStartFloor</value>
+  </data>
+  <data name="&gt;&gt;labelStartFloor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelStartFloor.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;labelStartFloor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="numFountainFinalBossWaitTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 174</value>
+  </data>
+  <data name="numFountainFinalBossWaitTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 30</value>
+  </data>
+  <data name="numFountainFinalBossWaitTime.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;numFountainFinalBossWaitTime.Name" xml:space="preserve">
+    <value>numFountainFinalBossWaitTime</value>
+  </data>
+  <data name="&gt;&gt;numFountainFinalBossWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numFountainFinalBossWaitTime.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;numFountainFinalBossWaitTime.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="labelFountainFinalBossWaitTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelFountainFinalBossWaitTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelFountainFinalBossWaitTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 146</value>
+  </data>
+  <data name="labelFountainFinalBossWaitTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 24</value>
+  </data>
+  <data name="labelFountainFinalBossWaitTime.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="labelFountainFinalBossWaitTime.Text" xml:space="preserve">
+    <value>最終王戰鬥預估時間(秒)</value>
+  </data>
+  <data name="&gt;&gt;labelFountainFinalBossWaitTime.Name" xml:space="preserve">
+    <value>labelFountainFinalBossWaitTime</value>
+  </data>
+  <data name="&gt;&gt;labelFountainFinalBossWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelFountainFinalBossWaitTime.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;labelFountainFinalBossWaitTime.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="numFountainWaitTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 108</value>
+  </data>
+  <data name="numFountainWaitTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 30</value>
+  </data>
+  <data name="numFountainWaitTime.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;numFountainWaitTime.Name" xml:space="preserve">
+    <value>numFountainWaitTime</value>
+  </data>
+  <data name="&gt;&gt;numFountainWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numFountainWaitTime.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;numFountainWaitTime.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="labelFountainWaitTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelFountainWaitTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelFountainWaitTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 80</value>
+  </data>
+  <data name="labelFountainWaitTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 24</value>
+  </data>
+  <data name="labelFountainWaitTime.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelFountainWaitTime.Text" xml:space="preserve">
+    <value>1-9層王戰鬥預估時間(秒)</value>
+  </data>
+  <data name="&gt;&gt;labelFountainWaitTime.Name" xml:space="preserve">
+    <value>labelFountainWaitTime</value>
+  </data>
+  <data name="&gt;&gt;labelFountainWaitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelFountainWaitTime.Parent" xml:space="preserve">
+    <value>panelModeFountain</value>
+  </data>
+  <data name="&gt;&gt;labelFountainWaitTime.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 89</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>420, 511</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -426,10 +862,7 @@
     <value>11, 24</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1277, 655</value>
-  </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1299, 711</value>
+    <value>1358, 842</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1299, 711</value>
