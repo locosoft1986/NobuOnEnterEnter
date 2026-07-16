@@ -56,6 +56,9 @@ namespace NobuOnEnterEnter
             numFountainWaitTime = new NumericUpDown();
             labelFountainWaitTime = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            panelSlaves = new Panel();
+            labelSlaves = new Label();
+            clbSlavesSelector = new CheckedListBox();
             panelModeEnter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)delayInMS).BeginInit();
             panelModePalace.SuspendLayout();
@@ -65,6 +68,7 @@ namespace NobuOnEnterEnter
             ((System.ComponentModel.ISupportInitialize)numFountainFinalBossWaitTime).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numFountainWaitTime).BeginInit();
             flowLayoutPanel1.SuspendLayout();
+            panelSlaves.SuspendLayout();
             SuspendLayout();
             // 
             // windowList
@@ -246,8 +250,27 @@ namespace NobuOnEnterEnter
             flowLayoutPanel1.Controls.Add(panelModeEnter);
             flowLayoutPanel1.Controls.Add(panelModePalace);
             flowLayoutPanel1.Controls.Add(panelModeFountain);
+            flowLayoutPanel1.Controls.Add(panelSlaves);
             resources.ApplyResources(flowLayoutPanel1, "flowLayoutPanel1");
             flowLayoutPanel1.Name = "flowLayoutPanel1";
+            // 
+            // panelSlaves
+            // 
+            panelSlaves.Controls.Add(labelSlaves);
+            panelSlaves.Controls.Add(clbSlavesSelector);
+            resources.ApplyResources(panelSlaves, "panelSlaves");
+            panelSlaves.Name = "panelSlaves";
+            // 
+            // labelSlaves
+            // 
+            resources.ApplyResources(labelSlaves, "labelSlaves");
+            labelSlaves.Name = "labelSlaves";
+            // 
+            // clbSlavesSelector
+            // 
+            clbSlavesSelector.FormattingEnabled = true;
+            resources.ApplyResources(clbSlavesSelector, "clbSlavesSelector");
+            clbSlavesSelector.Name = "clbSlavesSelector";
             // 
             // NobuEnterEnter
             // 
@@ -279,6 +302,7 @@ namespace NobuOnEnterEnter
             ((System.ComponentModel.ISupportInitialize)numFountainFinalBossWaitTime).EndInit();
             ((System.ComponentModel.ISupportInitialize)numFountainWaitTime).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
+            panelSlaves.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -313,5 +337,8 @@ namespace NobuOnEnterEnter
         private FlowLayoutPanel flowLayoutPanel1;
         private Label labelPalaceHint;
         private Label labelHintFountain;
+        private Panel panelSlaves;
+        private Label labelSlaves;
+        private CheckedListBox clbSlavesSelector;
     }
 }

@@ -208,4 +208,10 @@
   <data name="waitWindowSelection.Text" xml:space="preserve">
     <value>ウィンドウを選択してください ：</value>
   </data>
+  <data name="labelSlaves.Text" xml:space="preserve">
+    <value>追尾キャラクターを選択</value>
+  </data>
+  <data name="runningAsSlave.Text" xml:space="preserve">
+    <value>スレーブウィンドウとして動作中</value>
+  </data>
 </root>
