@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
 
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -549,7 +548,7 @@ namespace NobuOnEnterEnter
                                     decimal normalWaitTime = targetWindow.ModeSettings.ContainsKey("numFountainWaitTime") ? targetWindow.ModeSettings["numFountainWaitTime"] : 60;
                                     decimal finalBossWaitTime = targetWindow.ModeSettings.ContainsKey("numFountainFinalBossWaitTime") ? targetWindow.ModeSettings["numFountainFinalBossWaitTime"] : 120;
 
-                                    decimal actualDelayTime = (nextFloor % 10) == 0 ? finalBossWaitTime : normalWaitTime;
+                                    decimal actualDelayTime = (nextFloor % 10) == 0 ? finalBossWaitTime : ((nextFloor % 5) == 0 ? normalWaitTime + 8 : normalWaitTime);
                                     await Task.Delay(((int)actualDelayTime) * 1000, token);
                                 } else
                                 {
@@ -564,6 +563,14 @@ namespace NobuOnEnterEnter
                         {
                             decimal nextFloor = targetWindow.ModeSettings["numFountainStartFloor"] + 1;
                             targetWindow.ModeSettings["numFountainStartFloor"] = nextFloor;
+                            if (windowList.SelectedIndex != -1)
+                            {
+                                WindowInfo selectedWindow = capturedWindows[windowList.SelectedIndex];
+                                if (selectedWindow.ModeSettings.ContainsKey("numFountainStartFloor"))
+                                {
+                                    numFountainStartFloor.Value = targetWindow.ModeSettings["numFountainStartFloor"];
+                                }
+                            }
                         }
                     }
                 }, token);
@@ -886,8 +893,8 @@ namespace NobuOnEnterEnter
                 ModeSettings = new Dictionary<string, decimal>
                 {
                     { "delayInMS", 100 },
-                    { "numPalaceBattleWaitTime", 50 },
-                    { "numFountainWaitTime", 50 },
+                    { "numPalaceBattleWaitTime", 60 },
+                    { "numFountainWaitTime", 60 },
                     { "numFountainFinalBossWaitTime", 120 },
                     { "numFountainStartFloor", 1 }
                 };
