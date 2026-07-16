@@ -18,7 +18,9 @@
 - [Release頁面，下載最新版本zip包](https://github.com/locosoft1986/NobuOnEnterEnter/releases/tag/3.1.0)
 
 
-解壓放在喜歡的目錄下，最好目錄名都是英文， 右擊NobuOnEnterEnter.exe“以管理員方式啓動”
+解壓放在喜歡的目錄下，最好目錄名都是英文
+
+## 必須右擊NobuOnEnterEnter.exe“以管理員方式啓動”
 
 
 
