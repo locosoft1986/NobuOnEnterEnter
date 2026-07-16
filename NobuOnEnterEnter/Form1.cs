@@ -531,10 +531,9 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1000));
                     windowInfo.KeySequence.Add(new KeyAction(VK_UP, 500, 200));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 400));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1500));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 2000));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 2000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 1400));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 60));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1000));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1000));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 500, 100));
@@ -559,10 +558,9 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1000));
                     windowInfo.KeySequence.Add(new KeyAction(VK_UP, 500, 200));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 400));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1500));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 2000));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 2000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 1400));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 60));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1000));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1000));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 500, 100));
@@ -639,8 +637,8 @@ namespace NobuOnEnterEnter
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show($"Error: {ex.Message}",
+                //    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -725,8 +723,6 @@ namespace NobuOnEnterEnter
 
         private void cbModeSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdatePanelVisibility();
-            UpdateButtonStates();
 
             if (isUpdatingUI || windowList.SelectedIndex == -1) return;
 
@@ -748,6 +744,9 @@ namespace NobuOnEnterEnter
                     isUpdatingUI = false;
                 }
             }
+
+            UpdatePanelVisibility();
+            UpdateButtonStates();
         }
 
         private void UpdatePanelVisibility()

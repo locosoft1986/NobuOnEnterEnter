@@ -126,7 +126,7 @@
     <value>434, 12</value>
   </data>
   <data name="windowList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>831, 820</value>
+    <value>831, 868</value>
   </data>
   <data name="windowList.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -144,7 +144,7 @@
     <value>11</value>
   </data>
   <data name="addWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 657</value>
+    <value>12, 703</value>
   </data>
   <data name="addWindow.Size" type="System.Drawing.Size, System.Drawing">
     <value>416, 34</value>
@@ -171,7 +171,7 @@
     <value>False</value>
   </data>
   <data name="removeWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 697</value>
+    <value>12, 743</value>
   </data>
   <data name="removeWindow.Size" type="System.Drawing.Size, System.Drawing">
     <value>416, 34</value>
@@ -198,7 +198,7 @@
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 774</value>
+    <value>12, 820</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 24</value>
@@ -225,7 +225,7 @@
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 809</value>
+    <value>12, 855</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 24</value>
@@ -249,7 +249,7 @@
     <value>7</value>
   </data>
   <data name="stopAllWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 737</value>
+    <value>12, 783</value>
   </data>
   <data name="stopAllWindow.Size" type="System.Drawing.Size, System.Drawing">
     <value>416, 34</value>
@@ -276,7 +276,7 @@
     <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 774</value>
+    <value>269, 820</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 24</value>
@@ -300,7 +300,7 @@
     <value>5</value>
   </data>
   <data name="cmbLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>270, 801</value>
+    <value>270, 847</value>
   </data>
   <data name="cmbLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>158, 32</value>
@@ -448,7 +448,7 @@
     <value>NoControl</value>
   </data>
   <data name="startStopOneWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 606</value>
+    <value>12, 652</value>
   </data>
   <data name="startStopOneWindow.Size" type="System.Drawing.Size, System.Drawing">
     <value>416, 34</value>
@@ -781,7 +781,7 @@
     <value>12, 89</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>420, 511</value>
+    <value>420, 547</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -805,7 +805,7 @@
     <value>11, 24</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1277, 848</value>
+    <value>1277, 887</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1299, 711</value>
@@ -823,34 +823,34 @@
     <value>啓動所有視窗</value>
   </data>
   <data name="Modal.DuplicateWindow.Content" xml:space="preserve">
-    <value>無法添加重複的視窗</value>
+    <value>請勿添加重複的視窗</value>
   </data>
   <data name="Modal.DuplicateWindow.Title" xml:space="preserve">
-    <value>重複的視窗</value>
+    <value>重複視窗</value>
   </data>
   <data name="Modal.Error.Title" xml:space="preserve">
     <value>錯誤</value>
   </data>
   <data name="Modal.Error.Content.CanNotGetWindowTitle" xml:space="preserve">
-    <value>無法檢測到選擇的視窗</value>
+    <value>無法獲取視窗標題</value>
   </data>
   <data name="stopSelectedWindow.Text" xml:space="preserve">
-    <value>停止選中視窗</value>
+    <value> 停止選中視窗</value>
   </data>
   <data name="Modal.WindowNotFound.Content" xml:space="preserve">
-    <value>視窗已無效或沒有找到</value>
+    <value>此窗口已經無效或找不到</value>
   </data>
   <data name="Modal.Warning.Title" xml:space="preserve">
     <value>警告</value>
   </data>
   <data name="Modal.NoAdminWarning.Content" xml:space="preserve">
-    <value>此程式需要以“管理員模式”啓動。因爲需要向信on使用PostMessage發送按鍵，在Windows10/11下普通模式沒有這個權限</value>
+    <value>这个程序需要以“管理员模式”启动。 因为需要通过PostMessage向信on发送按键，所以在Windows 10/11的普通模式下没有这个权限</value>
   </data>
   <data name="Modal.Error.NotDetectAnyWindow.Content" xml:space="preserve">
-    <value>選擇的視窗沒有檢測到</value>
+    <value>沒有檢測到視窗</value>
   </data>
   <data name="Mode.Enter" xml:space="preserve">
-    <value>連續回車模式</value>
+    <value>連續回車</value>
   </data>
   <data name="Mode.Palace" xml:space="preserve">
     <value>夢幻冥宮</value>
@@ -859,13 +859,13 @@
     <value>夢幻冥泉</value>
   </data>
   <data name="waitWindowSelection.Text" xml:space="preserve">
-    <value>請選擇視窗</value>
+    <value>請聚焦預添加視窗</value>
   </data>
   <data name="labelSlaves.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 20</value>
   </data>
   <data name="labelSlaves.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>370, 23</value>
   </data>
   <data name="labelSlaves.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
