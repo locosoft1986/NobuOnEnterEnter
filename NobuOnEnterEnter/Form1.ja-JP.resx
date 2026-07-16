@@ -139,8 +139,14 @@
   <data name="startStopOneWindow.Text" xml:space="preserve">
     <value>選択したウィンドウを起動します</value>
   </data>
+  <data name="labelPalaceHint.Text" xml:space="preserve">
+    <value>対象をNPCに調整してください</value>
+  </data>
   <data name="labelPalaceBattleWaitTime.Text" xml:space="preserve">
     <value>戦闘待機時間（秒）</value>
+  </data>
+  <data name="labelHintFountain.Text" xml:space="preserve">
+    <value>対象をNPCに調整してください</value>
   </data>
   <data name="labelStartFloor.Text" xml:space="preserve">
     <value>今回の戦闘の開始階層</value>
@@ -184,7 +190,7 @@
     <value>警告</value>
   </data>
   <data name="Modal.NoAdminWarning.Content" xml:space="preserve">
-    <value>このアプリケーションは、他のウィンドウにEnterキーメッセージを送信するために管理者権限を必要とします。ウィンドウを閉じて右クリックし、「管理者として実行」を選択してください。</value>
+    <value>このプログラムは「管理者モード」で起動する必要があります。 信onにPostMessageでキーを送信する必要があるため、Windows 10/11の通常モードではこの権限がありません</value>
   </data>
   <data name="Modal.Error.NotDetectAnyWindow.Content" xml:space="preserve">
     <value>選択されたウィンドウが検出されませんでした
@@ -201,11 +207,5 @@
   </data>
   <data name="waitWindowSelection.Text" xml:space="preserve">
     <value>ウィンドウを選択してください ：</value>
-  </data>
-  <data name="labelHintFountain.Text" xml:space="preserve">
-    <value>対象をNPCに調整してください</value>
-  </data>
-  <data name="labelPalaceHint.Text" xml:space="preserve">
-    <value>対象をNPCに調整してください</value>
   </data>
 </root>

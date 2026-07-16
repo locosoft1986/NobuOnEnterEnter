@@ -152,6 +152,7 @@ namespace NobuOnEnterEnter
             // startStopOneWindow
             // 
             resources.ApplyResources(startStopOneWindow, "startStopOneWindow");
+            startStopOneWindow.FlatAppearance.BorderColor = SystemColors.HotTrack;
             startStopOneWindow.Name = "startStopOneWindow";
             startStopOneWindow.UseVisualStyleBackColor = true;
             startStopOneWindow.Click += startStopOneWindow_Click;

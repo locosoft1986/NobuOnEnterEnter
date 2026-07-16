@@ -134,6 +134,12 @@ namespace NobuOnEnterEnter
             delayInMS.Maximum = 5000; // Maximum 5 seconds
             delayInMS.Value = 100;    // Default 500ms
             delayInMS.Increment = 10;
+            cbModeSelection.Enabled = false;
+            delayInMS.Enabled = false;
+            numPalaceBattleWaitTime.Enabled = false;
+            numFountainWaitTime.Enabled = false;
+            numFountainFinalBossWaitTime.Enabled = false;
+            numFountainStartFloor.Enabled = false;
 
             // Subscribe to ListBox selection changed event
             windowList.SelectedIndexChanged += ListBoxWindows_SelectedIndexChanged;
@@ -144,6 +150,7 @@ namespace NobuOnEnterEnter
             numFountainWaitTime.ValueChanged += Setting_ValueChanged;
             numFountainFinalBossWaitTime.ValueChanged += Setting_ValueChanged;
             numFountainStartFloor.ValueChanged += Setting_ValueChanged;
+
         }
 
         private void Setting_ValueChanged(object sender, EventArgs e)
@@ -388,7 +395,7 @@ namespace NobuOnEnterEnter
                     else
                     {
                         startStopOneWindow.Text = resources.GetString("startStopOneWindow.Text");
-                        startStopOneWindow.BackColor = SystemColors.Control;
+                        startStopOneWindow.BackColor = SystemColors.ButtonFace;
                     }
                 }
                 else
