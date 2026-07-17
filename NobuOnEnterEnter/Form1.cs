@@ -529,13 +529,13 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_UP, 500, 200));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 1400));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 60));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1400));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1300, 60));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1000));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1200));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1500));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 500, 100));
                     windowInfo.KeySequence.Add(new KeyAction(VK_PALACE, 500, 200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 5000, 200));
@@ -556,13 +556,13 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_UP, 500, 200));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 1400));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 60));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1400));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1300, 60));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1000));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1200));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1500));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 500, 100));
                     windowInfo.KeySequence.Add(new KeyAction(VK_PALACE, 500, 200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 5000, 200));
@@ -619,14 +619,18 @@ namespace NobuOnEnterEnter
                         {
                             decimal nextFloor = targetWindow.ModeSettings["numFountainStartFloor"] + 1;
                             targetWindow.ModeSettings["numFountainStartFloor"] = nextFloor;
-                            if (windowList.SelectedIndex != -1)
+                            
+                            this.Invoke(new Action(() =>
                             {
-                                WindowInfo selectedWindow = capturedWindows[windowList.SelectedIndex];
-                                if (selectedWindow.ModeSettings.ContainsKey("numFountainStartFloor"))
+                                if (windowList.SelectedIndex != -1)
                                 {
-                                    numFountainStartFloor.Value = targetWindow.ModeSettings["numFountainStartFloor"];
+                                    WindowInfo selectedWindow = capturedWindows[windowList.SelectedIndex];
+                                    if (selectedWindow == targetWindow && selectedWindow.ModeSettings.ContainsKey("numFountainStartFloor"))
+                                    {
+                                        numFountainStartFloor.Value = targetWindow.ModeSettings["numFountainStartFloor"];
+                                    }
                                 }
-                            }
+                            }));
                         }
                     }
                 }, token);
@@ -637,8 +641,8 @@ namespace NobuOnEnterEnter
             }
             catch (Exception ex)
             {
-                //MessageBox.Show($"Error: {ex.Message}",
-                //    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -655,24 +659,21 @@ namespace NobuOnEnterEnter
                 }
                 windowInfo.Slaves.Clear();
 
-                // Update UI if this window is still selected
-                if (windowList.SelectedIndex != -1 &&
-                    capturedWindows[windowList.SelectedIndex] == windowInfo)
+                // Update UI safely on UI thread
+                this.Invoke(new Action(() =>
                 {
-                    this.Invoke(new Action(() =>
+                    if (windowList.SelectedIndex != -1 &&
+                        capturedWindows[windowList.SelectedIndex] == windowInfo)
                     {
                         UpdateButtonStates();
                         RefreshListBox();
-                    }));
-                }
-                else
-                {
-                    // If not selected, we still need to refresh the list to show status changes
-                    this.Invoke(new Action(() =>
+                    }
+                    else
                     {
+                        // If not selected, we still need to refresh the list to show status changes
                         RefreshListBox();
-                    }));
-                }
+                    }
+                }));
             }
         }
 
