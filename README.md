@@ -10,10 +10,9 @@
 
 
 ### 如果你沒有安裝dotNet 8.0，請先安裝dotNet 8.0，以下鏈接選擇系統對應的語言
-
-- [dotNet 8.0下載簡體中文](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.423-windows-x64-installer)
+- [dotNet 8.0下載簡體中文](https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/sdk-8.0.423-windows-x64-installer)
+- [dotNet 8.0下載繁體中文](https://dotnet.microsoft.com/zh-tw/download/dotnet/thank-you/sdk-8.0.423-windows-x64-installer)
 - [dotNet 8.0下載英文](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.423-windows-x64-installer)
-信長之野望Online回車精靈，先在上面Release頁面下載最新zip包
 - [dotNet 8.0下載日語](https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.423-windows-x64-installer)
 
 ### Release下載，默認只提供Win64，dotNet 8.0

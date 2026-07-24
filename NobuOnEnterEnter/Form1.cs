@@ -534,6 +534,7 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1400));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1300, 60));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 500, 100));
@@ -561,6 +562,7 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1400));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1300, 60));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1000));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 800, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_S, 1000, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 500, 100));
