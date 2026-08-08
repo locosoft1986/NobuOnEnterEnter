@@ -523,7 +523,8 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, battleWaitTimeMs, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
@@ -553,7 +554,8 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
