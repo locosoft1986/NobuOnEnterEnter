@@ -523,7 +523,10 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, battleWaitTimeMs, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
@@ -553,7 +556,10 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_FOUNTAIN_WAIT, battleWaitTimeMs, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
                     windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
@@ -596,6 +602,7 @@ namespace NobuOnEnterEnter
                             // Share key with slaves if enabled
                             if (keyAction.SlaveShared)
                             {
+                                await Task.Delay(300, token);
                                 foreach (var slave in windowInfo.Slaves)
                                 {
                                     SendKey(slave.Handle, keyAction.KeyValue, keyAction.Duration, slave.Width, slave.Height);
