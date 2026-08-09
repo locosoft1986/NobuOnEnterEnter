@@ -18,7 +18,7 @@
 ### Release下載，默認只提供Win64，dotNet 8.0
 
 
-- [Release頁面，下載最新版本zip包](https://github.com/locosoft1986/NobuOnEnterEnter/releases/tag/3.1.1)
+- [Release頁面，下載最新版本zip包](https://github.com/locosoft1986/NobuOnEnterEnter/releases/tag/3.1.2)
 
 
 解壓放在喜歡的目錄下，最好目錄名都是英文
