@@ -214,4 +214,7 @@
   <data name="runningAsSlave.Text" xml:space="preserve">
     <value>スレーブウィンドウとして動作中</value>
   </data>
+  <data name="Mode.Following" xml:space="preserve">
+    <value>追尾モード</value>
+  </data>
 </root>

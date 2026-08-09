@@ -358,21 +358,6 @@ namespace NobuOnEnterEnter
                 {
                     WindowInfo selectedWindow = capturedWindows[windowList.SelectedIndex];
 
-                    // Update clbSlavesSelector
-                    if (!selectedWindow.IsRunning)
-                    {
-                        clbSlavesSelector.Items.Clear();
-                        foreach (var window in capturedWindows)
-                        {
-                            if (window != selectedWindow && !window.IsRunning)
-                            {
-                                clbSlavesSelector.Items.Add(window);
-                            }
-                        }
-                    }
-                    
-                    bool canHaveSlaves = (selectedWindow.ModeCode == "Palace" || selectedWindow.ModeCode == "Fountain") && !selectedWindow.IsRunning;
-                    clbSlavesSelector.Enabled = canHaveSlaves;
 
                     // Restore dropdown mode selection
                     foreach (ModeItem item in cbModeSelection.Items)
@@ -400,34 +385,21 @@ namespace NobuOnEnterEnter
                     removeWindow.Enabled = true;
 
                     // Update start/stop button based on selected window's state
-                    if (selectedWindow.IsRunning && selectedWindow.CancellationTokenSource == null && selectedWindow.Master != null)
+                    startStopOneWindow.Enabled = true;
+                    if (selectedWindow.IsRunning)
                     {
-                        // It's a slave, cannot stop individually
-                        startStopOneWindow.Enabled = false;
-                        startStopOneWindow.Text = resources.GetString("runningAsSlave.Text") ?? "正在作爲從視窗運行";
-                        startStopOneWindow.BackColor = Color.LightGray;
-                        removeWindow.Enabled = false;
+                        startStopOneWindow.Text = resources.GetString("stopSelectedWindow.Text");
+                        startStopOneWindow.BackColor = Color.LightCoral;
                     }
                     else
                     {
-                        startStopOneWindow.Enabled = true;
-                        if (selectedWindow.IsRunning)
-                        {
-                            startStopOneWindow.Text = resources.GetString("stopSelectedWindow.Text");
-                            startStopOneWindow.BackColor = Color.LightCoral;
-                        }
-                        else
-                        {
-                            startStopOneWindow.Text = resources.GetString("startStopOneWindow.Text");
-                            startStopOneWindow.BackColor = SystemColors.ButtonFace;
-                        }
+                        startStopOneWindow.Text = resources.GetString("startStopOneWindow.Text");
+                        startStopOneWindow.BackColor = SystemColors.ButtonFace;
                     }
                 }
                 else
                 {
                     // No selection
-                    clbSlavesSelector.Items.Clear();
-                    clbSlavesSelector.Enabled = false;
                     removeWindow.Enabled = false;
                     startStopOneWindow.Enabled = false;
                     startStopOneWindow.Text = resources.GetString("startStopOneWindow.Text");
@@ -483,26 +455,12 @@ namespace NobuOnEnterEnter
             // Update window state
             windowInfo.IsRunning = true;
             windowInfo.KeySequence.Clear();
-            windowInfo.Slaves.Clear();
 
             if (cbModeSelection.SelectedItem is ModeItem selectedMode)
             {
                 windowInfo.ModeName = selectedMode.DisplayName;
                 windowInfo.ModeCode = selectedMode.ModeCode;
 
-                // Handle Slaves
-                if (selectedMode.ModeCode == "Palace" || selectedMode.ModeCode == "Fountain")
-                {
-                    foreach (var item in clbSlavesSelector.CheckedItems)
-                    {
-                        if (item is WindowInfo slave)
-                        {
-                            slave.IsRunning = true;
-                            slave.Master = windowInfo;
-                            windowInfo.Slaves.Add(slave);
-                        }
-                    }
-                }
                 
                 // Refresh ListBox to show slave status
                 RefreshListBox();
@@ -521,16 +479,16 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_UP, 50, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1600, 200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, battleWaitTimeMs, 50));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_UP, 500, 200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1400));
@@ -551,16 +509,16 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_UP, 50, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1600, 200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_FOUNTAIN_WAIT, battleWaitTimeMs, 50));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
-                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50, true));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 100));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
                     windowInfo.KeySequence.Add(new KeyAction(VK_W, 200, 1500));
                     windowInfo.KeySequence.Add(new KeyAction(VK_UP, 500, 200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 1200, 1400));
@@ -593,15 +551,6 @@ namespace NobuOnEnterEnter
 
                             SendKey(windowInfo.Handle, keyAction.KeyValue, keyAction.Duration, windowInfo.Width, windowInfo.Height);
                             
-                            // Share key with slaves if enabled
-                            if (keyAction.SlaveShared)
-                            {
-                                await Task.Delay(300, token);
-                                foreach (var slave in windowInfo.Slaves)
-                                {
-                                    SendKey(slave.Handle, keyAction.KeyValue, keyAction.Duration, slave.Width, slave.Height);
-                                }
-                            }
 
                             if (keyAction.KeyValue == VK_FOUNTAIN_WAIT)
                             {
@@ -658,13 +607,6 @@ namespace NobuOnEnterEnter
                 windowInfo.CancellationTokenSource?.Dispose();
                 windowInfo.CancellationTokenSource = null;
 
-                // Stop slaves
-                foreach (var slave in windowInfo.Slaves)
-                {
-                    slave.IsRunning = false;
-                    slave.Master = null;
-                }
-                windowInfo.Slaves.Clear();
 
                 // Update UI safely on UI thread
                 this.Invoke(new Action(() =>
@@ -764,7 +706,6 @@ namespace NobuOnEnterEnter
                 panelModeEnter.Visible = selectedMode.ModeCode == "Enter";
                 panelModePalace.Visible = selectedMode.ModeCode == "Palace";
                 panelModeFountain.Visible = selectedMode.ModeCode == "Fountain";
-                panelSlaves.Visible = selectedMode.ModeCode == "Palace" || selectedMode.ModeCode == "Fountain";
             }
         }
 
@@ -942,14 +883,12 @@ namespace NobuOnEnterEnter
             public int KeyValue { get; set; }
             public int DelayTime { get; set; }
             public int Duration { get; set; }
-            public bool SlaveShared { get; set; }
 
-            public KeyAction(int keyValue, int delayTime, int duration, bool slaveShared = false)
+            public KeyAction(int keyValue, int delayTime, int duration)
             {
                 KeyValue = keyValue;
                 DelayTime = delayTime;
                 Duration = duration;
-                SlaveShared = slaveShared;
             }
         }
 
@@ -967,16 +906,12 @@ namespace NobuOnEnterEnter
             public string ModeName { get; set; }
             public string ModeCode { get; set; }
             public Dictionary<string, decimal> ModeSettings { get; set; }
-            public List<WindowInfo> Slaves { get; set; }
-            public WindowInfo Master { get; set; }
-
+            
             public WindowInfo()
             {
                 IsRunning = false;
                 CancellationTokenSource = null;
                 KeySequence = new List<KeyAction>();
-                Slaves = new List<WindowInfo>();
-                Master = null;
                 ModeName = "";
                 ModeCode = "";
                 ModeSettings = new Dictionary<string, decimal>
@@ -995,8 +930,6 @@ namespace NobuOnEnterEnter
                 {
                     if (CancellationTokenSource != null)
                         RunningState = $" (啓動中, {ModeName})";
-                    else if (Master != null)
-                        RunningState = $" (作為從視窗運行中)";
                     else
                         RunningState = " (啓動中)";
                 }

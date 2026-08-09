@@ -861,6 +861,12 @@
   <data name="waitWindowSelection.Text" xml:space="preserve">
     <value>請聚焦預添加視窗</value>
   </data>
+  <data name="labelSlaves.Text" xml:space="preserve">
+    <value>請選擇多開跟隨角色窗口</value>
+  </data>
+  <data name="runningAsSlave.Text" xml:space="preserve">
+    <value>從屬窗口模式</value>
+  </data>
   <data name="labelSlaves.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 20</value>
   </data>
@@ -869,9 +875,6 @@
   </data>
   <data name="labelSlaves.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="labelSlaves.Text" xml:space="preserve">
-    <value>請選擇多開跟隨角色窗口</value>
   </data>
   <data name="&gt;&gt;labelSlaves.Name" xml:space="preserve">
     <value>labelSlaves</value>
@@ -927,7 +930,7 @@
   <data name="&gt;&gt;panelSlaves.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="runningAsSlave.Text" xml:space="preserve">
-    <value>從屬窗口模式</value>
+  <data name="Mode.Following" xml:space="preserve">
+    <value>追隨擺爛</value>
   </data>
 </root>
