@@ -32,6 +32,8 @@ namespace NobuOnEnterEnter
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool IsWindow(IntPtr hWnd);
 
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool PostMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
@@ -99,6 +101,12 @@ namespace NobuOnEnterEnter
         private const int VK_S = 0x53;
         private const int VK_PALACE = 9999;
         private const int VK_FOUNTAIN_WAIT = 8888;
+        private const int VK_FOLLOWING = 7777;
+
+        private const uint WM_RBUTTONDOWN = 0x0204;
+        private const uint WM_RBUTTONUP = 0x0205;
+        private const int MK_RBUTTON = 0x0002;
+
         private ComponentResourceManager resources;
         private bool isInitializing = true;
 
@@ -531,6 +539,19 @@ namespace NobuOnEnterEnter
                     windowInfo.KeySequence.Add(new KeyAction(VK_PALACE, 500, 200));
                     windowInfo.KeySequence.Add(new KeyAction(VK_RETURN, 5000, 200));
                 }
+                else if (selectedMode.ModeCode == "Following")
+                {
+                    windowInfo.KeySequence.Add(new KeyAction(VK_FOLLOWING, 1000, 100));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_FOLLOWING, 1000, 100));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_FOLLOWING, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_FOLLOWING, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_FOLLOWING, 1000, 50));
+                    windowInfo.KeySequence.Add(new KeyAction(VK_ESCAPE, 1000, 50));
+                }
             }
             
             windowInfo.CancellationTokenSource = new CancellationTokenSource();
@@ -541,9 +562,9 @@ namespace NobuOnEnterEnter
             {
                 await Task.Run(async () =>
                 {
+                    SetForegroundWindow(windowInfo.Handle);
                     while (!token.IsCancellationRequested)
                     {
-                        var targetWindow = capturedWindows[InWindowIndex];
                         foreach (var keyAction in windowInfo.KeySequence)
                         {
                             if (token.IsCancellationRequested)
@@ -554,11 +575,11 @@ namespace NobuOnEnterEnter
 
                             if (keyAction.KeyValue == VK_FOUNTAIN_WAIT)
                             {
-                                if (targetWindow.ModeSettings.ContainsKey("numFountainStartFloor"))
+                                if (windowInfo.ModeSettings.ContainsKey("numFountainStartFloor"))
                                 {
-                                    decimal nextFloor = targetWindow.ModeSettings["numFountainStartFloor"];
-                                    decimal normalWaitTime = targetWindow.ModeSettings.ContainsKey("numFountainWaitTime") ? targetWindow.ModeSettings["numFountainWaitTime"] : 60;
-                                    decimal finalBossWaitTime = targetWindow.ModeSettings.ContainsKey("numFountainFinalBossWaitTime") ? targetWindow.ModeSettings["numFountainFinalBossWaitTime"] : 120;
+                                    decimal nextFloor = windowInfo.ModeSettings["numFountainStartFloor"];
+                                    decimal normalWaitTime = windowInfo.ModeSettings.ContainsKey("numFountainWaitTime") ? windowInfo.ModeSettings["numFountainWaitTime"] : 60;
+                                    decimal finalBossWaitTime = windowInfo.ModeSettings.ContainsKey("numFountainFinalBossWaitTime") ? windowInfo.ModeSettings["numFountainFinalBossWaitTime"] : 120;
 
                                     decimal actualDelayTime = (nextFloor % 10) == 0 ? finalBossWaitTime : ((nextFloor % 5) == 0 ? normalWaitTime + 8 : normalWaitTime);
                                     await Task.Delay(((int)actualDelayTime) * 1000, token);
@@ -571,19 +592,19 @@ namespace NobuOnEnterEnter
                                 await Task.Delay(keyAction.DelayTime, token);
                             }
                         }
-                        if (targetWindow.ModeSettings.ContainsKey("numFountainStartFloor"))
+                        if (windowInfo.ModeSettings.ContainsKey("numFountainStartFloor"))
                         {
-                            decimal nextFloor = targetWindow.ModeSettings["numFountainStartFloor"] + 1;
-                            targetWindow.ModeSettings["numFountainStartFloor"] = nextFloor;
+                            decimal nextFloor = windowInfo.ModeSettings["numFountainStartFloor"] + 1;
+                            windowInfo.ModeSettings["numFountainStartFloor"] = nextFloor;
                             
                             this.Invoke(new Action(() =>
                             {
                                 if (windowList.SelectedIndex != -1)
                                 {
                                     WindowInfo selectedWindow = capturedWindows[windowList.SelectedIndex];
-                                    if (selectedWindow == targetWindow && selectedWindow.ModeSettings.ContainsKey("numFountainStartFloor"))
+                                    if (selectedWindow.Handle == windowInfo.Handle && selectedWindow.ModeSettings.ContainsKey("numFountainStartFloor"))
                                     {
-                                        numFountainStartFloor.Value = targetWindow.ModeSettings["numFountainStartFloor"];
+                                        numFountainStartFloor.Value = windowInfo.ModeSettings["numFountainStartFloor"];
                                     }
                                 }
                             }));
@@ -665,6 +686,7 @@ namespace NobuOnEnterEnter
             cbModeSelection.Items.Add(new ModeItem(resources.GetString("Mode.Enter") ?? "連續回車模式", "Enter"));
             cbModeSelection.Items.Add(new ModeItem(resources.GetString("Mode.Palace") ?? "夢幻冥宮", "Palace"));
             cbModeSelection.Items.Add(new ModeItem(resources.GetString("Mode.Fountain") ?? "夢幻冥泉", "Fountain"));
+            cbModeSelection.Items.Add(new ModeItem(resources.GetString("Mode.Following") ?? "追隨擺爛", "Following"));
             
             cbModeSelection.SelectedIndex = 0;
             cbModeSelection.SelectedIndexChanged += cbModeSelection_SelectedIndexChanged;
@@ -674,7 +696,7 @@ namespace NobuOnEnterEnter
         private void cbModeSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (isUpdatingUI || windowList.SelectedIndex == -1) return;
+            if (windowList.SelectedIndex == -1) return;
 
             if (cbModeSelection.SelectedItem is ModeItem selectedMode)
             {
@@ -819,7 +841,18 @@ namespace NobuOnEnterEnter
                     Thread.Sleep(100);
                     SendMouseMove(hWnd, (int)(desiredX + 3), (int)desiredY - 3);
                     Thread.Sleep(duration);
-                } else
+                }
+                else if (keyValue == VK_FOLLOWING)
+                {
+                    int x = width / 2;
+                    int y = height / 2;
+                    int lParam = (y << 16) | x;
+
+                    PostMessage(hWnd, WM_RBUTTONDOWN, MK_RBUTTON, lParam);
+                    Thread.Sleep(duration);
+                    PostMessage(hWnd, WM_RBUTTONUP, 0, lParam);
+                }
+                else
                 {
                     if (keyValue == VK_FOUNTAIN_WAIT)
                     {
